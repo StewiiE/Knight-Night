@@ -8,25 +8,27 @@ public class PlayerMaul : MonoBehaviour
 
     BoxCollider weaponCollider;
 
+    public float canDamageTime;
+
 	// Use this for initialization
 	void Start ()
     {
         weaponCollider = GetComponent<BoxCollider>();
         weaponCollider.enabled = false;
+
+        canDamageTime = 1f;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Attack"))
         {
             if (!weaponCollider.enabled)
             {
                 StartCoroutine(canDamage());
             }
         }
-
-        Debug.Log(weaponCollider.enabled);
 	}
 
     void OnTriggerEnter(Collider other)
@@ -42,7 +44,7 @@ public class PlayerMaul : MonoBehaviour
     IEnumerator canDamage()
     {
         weaponCollider.enabled = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(canDamageTime);
         weaponCollider.enabled = false;
     }
 }

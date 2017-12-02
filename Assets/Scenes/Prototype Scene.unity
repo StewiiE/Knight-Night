@@ -552,8 +552,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.97363085, g: 1, b: 0.85294116, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -626,7 +626,7 @@ MonoBehaviour:
   lockCursor: 1
   mouseSensitivity: 2
   target: {fileID: 996263089}
-  disFromTarget: 2.5
+  disFromTarget: 3
   pitchMinMax: {x: -40, y: 85}
   rotationSmoothTime: 0.12
 --- !u!81 &1324920507

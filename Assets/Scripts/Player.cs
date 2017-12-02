@@ -27,12 +27,16 @@ public class Player : MonoBehaviour
     public float speedSmoothTime = 0.1f;
     float speedSmoothVelocity;
 
+    public float attackTime;
+
     // Use this for initialization
     void Start ()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         cameraT = Camera.main.transform;
+
+        attackTime = 2f;
     }
 	
 	// Update is called once per frame
@@ -69,7 +73,7 @@ public class Player : MonoBehaviour
         }
 
         // Attack button
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Attack"))
         {
             Attack();
         }
@@ -107,7 +111,7 @@ public class Player : MonoBehaviour
     {
         attack = false;
         isAttacking = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(attackTime);
         attack = true;
         isAttacking = false;
     }
