@@ -68,8 +68,8 @@ public class Player : MonoBehaviour
         // Quit game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            print("Quit game");
             Application.Quit();
+            print("Quit game");
         }
 
         // Attack button

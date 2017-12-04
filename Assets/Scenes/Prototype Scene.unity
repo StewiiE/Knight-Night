@@ -432,23 +432,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4829597130983706, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
     type: 2}
   m_PrefabInternal: {fileID: 1120042313}
---- !u!1 &1066205323 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1100442140630086, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1120042313}
---- !u!65 &1066205325
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1066205323}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6426548, y: 2.0624247, z: 0.4410963}
-  m_Center: {x: 0.003974259, y: 1.0484719, z: -0.10239172}
 --- !u!1001 &1120042313
 Prefab:
   m_ObjectHideFlags: 0
@@ -488,43 +471,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 54585332703161010, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 136134075306349324, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 136134075306349324, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_Height
-      value: 2.1473222
-      objectReference: {fileID: 0}
-    - target: {fileID: 136134075306349324, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 1.0380452
-      objectReference: {fileID: 0}
-    - target: {fileID: 54585332703161010, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54585332703161010, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 136134075306349324, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 136134075306349324, guid: 3dbe4769558a29c44a3800ff88f7a5b2, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dbe4769558a29c44a3800ff88f7a5b2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1232674079
