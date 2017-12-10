@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     
     // Attack vars
     private bool isAttacking;
-    private bool attack = true;
+    public bool attack = true;
 
     // Player speed
     public float walkSpeed = 2;

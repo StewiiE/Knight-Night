@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 23568804982562842}
   - component: {fileID: 65580275867684712}
   - component: {fileID: 114413575640710690}
+  - component: {fileID: 64631476194462570}
   m_Layer: 0
   m_Name: Maul1
   m_TagString: Untagged
@@ -2345,6 +2346,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!64 &64631476194462570
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1527902726028946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: ffaf641b210f5ea41952cf36f1379d66, type: 3}
 --- !u!65 &65283822379152930
 BoxCollider:
   m_ObjectHideFlags: 1

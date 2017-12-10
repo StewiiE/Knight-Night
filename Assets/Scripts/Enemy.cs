@@ -8,10 +8,15 @@ public class Enemy : MonoBehaviour
     public float currentHealth;
     float maxHealth = 100f;
 
+    private PlayerStats thePlayerStats;
+    public int expToGive;
+
 	// Use this for initialization
 	void Start ()
     {
         currentHealth = 100f;
+
+        thePlayerStats = FindObjectOfType<PlayerStats>();
 	}
 
     // Update is called once per frame
@@ -32,5 +37,7 @@ public class Enemy : MonoBehaviour
     public void Death()
     {
         Destroy(this.gameObject);
+
+        thePlayerStats.AddExperience(expToGive);
     }
 }

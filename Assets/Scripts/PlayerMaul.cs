@@ -10,6 +10,8 @@ public class PlayerMaul : MonoBehaviour
 
     public float canDamageTime;
 
+    Player player;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -17,6 +19,8 @@ public class PlayerMaul : MonoBehaviour
         weaponCollider.enabled = false;
 
         canDamageTime = 1f;
+
+        player = FindObjectOfType<Player>();
     }
 	
 	// Update is called once per frame
@@ -43,8 +47,11 @@ public class PlayerMaul : MonoBehaviour
 
     IEnumerator canDamage()
     {
-        weaponCollider.enabled = true;
-        yield return new WaitForSeconds(canDamageTime);
-        weaponCollider.enabled = false;
+        if(player.attack == true)
+        {
+            weaponCollider.enabled = true;
+            yield return new WaitForSeconds(canDamageTime);
+            weaponCollider.enabled = false;
+        }
     }
 }
