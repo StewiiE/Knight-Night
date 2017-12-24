@@ -29,12 +29,15 @@ public class Player : MonoBehaviour
 
     public float attackTime;
 
+    private PlayerStats playerStats;
+
     // Use this for initialization
     void Start ()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         cameraT = Camera.main.transform;
+        playerStats = FindObjectOfType<PlayerStats>();
 
         attackTime = 2f;
     }
@@ -83,6 +86,11 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, cameraT.rotation, Time.deltaTime * damping);
             transform.rotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y, 0f));
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            playerStats.currentHealth -= 10;
         }
     }
 

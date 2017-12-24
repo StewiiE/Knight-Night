@@ -9,6 +9,9 @@ public class UIManager : MonoBehaviour
 
     private PlayerStats playerStats;
 
+    public Slider healthBar;
+    public Text healthText;
+
     private static bool UIExists;
 
 	// Use this for initialization
@@ -31,5 +34,8 @@ public class UIManager : MonoBehaviour
 	void Update ()
     {
         levelText.text = "Level: " + playerStats.currentLevel;
+        healthBar.maxValue = playerStats.maxHealth;
+        healthBar.value = playerStats.currentHealth;
+        healthText.text = "HP: " + playerStats.currentHealth + "/" + playerStats.maxHealth;
 	}
 }
