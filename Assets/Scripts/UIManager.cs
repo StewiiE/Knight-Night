@@ -9,8 +9,8 @@ public class UIManager : MonoBehaviour
 
     private PlayerStats playerStats;
 
-    public Slider healthBar;
     public Text healthText;
+    public Image healthbar;
 
     private static bool UIExists;
 
@@ -33,9 +33,8 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        levelText.text = "Level: " + playerStats.currentLevel;
-        healthBar.maxValue = playerStats.maxHealth;
-        healthBar.value = playerStats.currentHealth;
+        levelText.text = "" + playerStats.currentLevel;
         healthText.text = "HP: " + playerStats.currentHealth + "/" + playerStats.maxHealth;
+        healthbar.fillAmount = playerStats.currentHealth / 100f;
 	}
 }
