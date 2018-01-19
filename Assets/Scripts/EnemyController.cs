@@ -28,6 +28,9 @@ public class EnemyController : MonoBehaviour
             if (distance <= agent.stoppingDistance)
             {
                 // Attack
+
+                Debug.Log("Attack player");
+
                 FaceTarget();
             }
         }
