@@ -71,8 +71,11 @@ public class Player : MonoBehaviour
         // Quit game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
-            print("Quit game");
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
         }
 
         // Attack button
