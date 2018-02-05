@@ -10,6 +10,8 @@ public class PlayerMaul : MonoBehaviour
 
     public float canDamageTime;
 
+    float force = 30f;
+
     Player player;
 
 	// Use this for initialization
@@ -30,7 +32,7 @@ public class PlayerMaul : MonoBehaviour
         {
             if (!weaponCollider.enabled)
             {
-                StartCoroutine(canDamage());
+                StartCoroutine(CanDamage());
             }
         }
 	}
@@ -40,12 +42,16 @@ public class PlayerMaul : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
+            Rigidbody enemyRb = other.gameObject.GetComponent<Rigidbody>();
             enemyScript.TakeDamage(damage);
+
+            enemyRb.AddForce(this.gameObject.transform.forward * force, ForceMode.Impulse);
+
             Debug.Log("Hit enemy");   
         }
     }
 
-    IEnumerator canDamage()
+    IEnumerator CanDamage()
     {
         if(player.attack == true)
         {

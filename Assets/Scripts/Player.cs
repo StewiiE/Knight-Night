@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
 
     private PlayerStats playerStats;
 
+    bool gotHit = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -58,14 +60,17 @@ public class Player : MonoBehaviour
         // Don't move if attacking
         if (isAttacking == false)
         {
-            bool running = Input.GetKey(KeyCode.LeftShift);
-            float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
-            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+            if (gotHit == false)
+            {
+                bool running = Input.GetKey(KeyCode.LeftShift);
+                float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+                currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+                transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
 
-            float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
-            anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
+                anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+            }
         }
 
         // Quit game
@@ -95,6 +100,33 @@ public class Player : MonoBehaviour
         {
             playerStats.currentHealth -= 10;
         }
+
+        #region Got Hit
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
+        {
+            Debug.Log("Playing GetHit");
+            gotHit = true;
+        }
+        else
+        {
+            gotHit = false;
+        }
+        #endregion
+
+        #region is Attacking
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("standing_melee_attack_downward"))
+        {
+            attack = false;
+            isAttacking = true;
+        }
+        else
+        {
+            attack = true;
+            isAttacking = false;
+        }
+        #endregion
     }
 
     // Attack
@@ -112,18 +144,14 @@ public class Player : MonoBehaviour
             anim.SetBool("isAttacking", true);
             yield return new WaitForSeconds(0.1f);
             anim.SetBool("isAttacking", false);
-
-            StartCoroutine(WaitForAttackToFinish());
         }
     }
 
-    // Waits for attack to finish before attacking again
-    IEnumerator WaitForAttackToFinish()
+    public void DoHit()
     {
-        attack = false;
-        isAttacking = true;
-        yield return new WaitForSeconds(attackTime);
-        attack = true;
-        isAttacking = false;
+        if(anim.GetBool("isDead") == false)
+        {
+            anim.Play("GetHit", 0, 0.0f);
+        }
     }
 }

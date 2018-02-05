@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
+
+
         Destroy(this.gameObject);
 
         thePlayerStats.AddExperience(expToGive);

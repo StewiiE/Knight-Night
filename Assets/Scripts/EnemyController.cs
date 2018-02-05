@@ -9,12 +9,14 @@ public class EnemyController : MonoBehaviour
 
     Transform target;
     NavMeshAgent agent;
+    Animator animator;
 
     // Use this for initialization
     void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +34,12 @@ public class EnemyController : MonoBehaviour
                 Debug.Log("Attack player");
 
                 FaceTarget();
+
+                animator.SetBool("Attack", true);
+            }
+            else
+            {
+                animator.SetBool("Attack", false);
             }
         }
     }
@@ -47,5 +55,10 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
+
+    public void AttackEnd()
+    {
+
     }
 }
