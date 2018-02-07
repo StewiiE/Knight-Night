@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     // Player rotation
     public float turnSmoothTime = 0.2f;
     float turnSmoothVelocity;
-    public float damping = 10f;
+    public float damping = 100f;
 
     // Smooth speed
     public float speedSmoothTime = 0.1f;
@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
     private PlayerStats playerStats;
 
     bool gotHit = false;
+
+    // Animation Vars
+    public bool animIsAttacking = false;
+    private bool isRolling = false;
+
 
     // Use this for initialization
     void Start ()
@@ -62,14 +67,17 @@ public class Player : MonoBehaviour
         {
             if (gotHit == false)
             {
-                bool running = Input.GetKey(KeyCode.LeftShift);
-                float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
-                currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+                if(isRolling == false)
+                {
+                    bool running = Input.GetKey(KeyCode.LeftShift);
+                    float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+                    currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-                transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+                    transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
 
-                float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
-                anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                    float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
+                    anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                }
             }
         }
 
@@ -89,12 +97,14 @@ public class Player : MonoBehaviour
             Attack();
         }
 
+        #region Rotate Camera On Attack
         // Rotate player to camera rotation when attacking
         if (isAttacking == true)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, cameraT.rotation, Time.deltaTime * damping);
             transform.rotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y, 0f));
         }
+        #endregion
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -105,7 +115,6 @@ public class Player : MonoBehaviour
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
         {
-            Debug.Log("Playing GetHit");
             gotHit = true;
         }
         else
@@ -116,7 +125,7 @@ public class Player : MonoBehaviour
 
         #region is Attacking
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("standing_melee_attack_downward"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             attack = false;
             isAttacking = true;
@@ -127,6 +136,39 @@ public class Player : MonoBehaviour
             isAttacking = false;
         }
         #endregion
+
+        #region is Rolling
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
+        {
+            isRolling = true;
+        }
+        else
+        {
+            isRolling = false;
+        }
+
+        #endregion
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if(isRolling == false)
+            {
+                rb.AddRelativeForce(Vector3.forward * 2000);
+                anim.Play("Roll", 0, 0.0f);
+            }
+        }
+
+        if(Input.GetKey(KeyCode.Q))
+        {
+            Debug.Log("Blocking");
+            anim.SetBool("isBlocking", true);
+        }
+        else
+        {
+            anim.SetBool("isBlocking", false);
+        }
+
     }
 
     // Attack
@@ -153,5 +195,15 @@ public class Player : MonoBehaviour
         {
             anim.Play("GetHit", 0, 0.0f);
         }
+    }
+
+    public void AttackStart()
+    {
+        animIsAttacking = true;
+    }
+
+    public void AttackEnd()
+    {
+        animIsAttacking = false;
     }
 }

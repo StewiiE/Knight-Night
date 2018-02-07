@@ -3,7 +3,7 @@ guid: ffaf641b210f5ea41952cf36f1379d66
 timeCreated: 1487600129
 licenseType: Store
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: body
     100002: chest
@@ -190,6 +190,10 @@ ModelImporter:
     4300008: body
     7400000: knightTpose
     7400002: knightIdle
+    7400004: CINEMA_4D_Main
+    7400006: CINEMA_4D_Main (1)
+    7400008: CINEMA_4D_Main (2)
+    7400010: CINEMA_4D_Main (3)
     9500000: //RootNode
     13700000: body
     13700002: cloth
@@ -202,7 +206,9 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: <Root Transform>
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -213,6 +219,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: knightTpose
@@ -620,7 +627,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -636,6 +646,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

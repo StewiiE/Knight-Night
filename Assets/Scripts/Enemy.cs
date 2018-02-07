@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     private PlayerStats thePlayerStats;
     public int expToGive;
 
+    public GameObject ragdollPrefab;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -31,14 +33,13 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth = currentHealth -= damage;
-        Debug.Log(currentHealth);
     }
 
     public void Death()
     {
-
-
         Destroy(this.gameObject);
+
+        Instantiate(ragdollPrefab, transform.position, transform.rotation);
 
         thePlayerStats.AddExperience(expToGive);
     }

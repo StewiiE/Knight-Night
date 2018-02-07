@@ -11,12 +11,31 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     Animator animator;
 
+    GameObject player;
+    Player playerScript;
+
+    public GameObject sword;
+    EnemySword swordScript;
+
+    bool canDamage;
+
+    private PlayerStats playerStats;
+
+    float animSpeedPercent;
+
     // Use this for initialization
     void Start()
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        player = PlayerManager.instance.player;
+        playerScript = player.GetComponent<Player>();
+
+        swordScript = sword.GetComponent<EnemySword>();
+
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     // Update is called once per frame
@@ -31,7 +50,7 @@ public class EnemyController : MonoBehaviour
             {
                 // Attack
 
-                Debug.Log("Attack player");
+                canDamage = true;
 
                 FaceTarget();
 
@@ -40,8 +59,18 @@ public class EnemyController : MonoBehaviour
             else
             {
                 animator.SetBool("Attack", false);
+                canDamage = false;
             }
         }
+
+        if(playerScript.enabled == false)
+        {
+            animator.SetBool("Attack", false);
+        }
+
+        
+        animSpeedPercent = agent.velocity.magnitude;
+        animator.SetFloat("speedPercent", animSpeedPercent, 0.5f, Time.deltaTime);
     }
 
     void FaceTarget()
@@ -57,8 +86,21 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 
-    public void AttackEnd()
+    public void AttackEnd1()
     {
+        if(canDamage == true)
+        {
+            playerScript.DoHit();
+            playerStats.currentHealth -= 5;
+        }
+    }
 
+    public void AttackEnd2()
+    {
+        if (canDamage == true)
+        {
+            playerScript.DoHit();
+            playerStats.currentHealth -= 5;
+        }
     }
 }

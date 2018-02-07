@@ -2370,8 +2370,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6426548, y: 2.0624247, z: 0.4410963}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 0.8272734, y: 2.0624247, z: 0.82795703}
+  m_Center: {x: 0.092309326, y: 1, z: 0.015789568}
 --- !u!65 &65580275867684712
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2448,8 +2448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c7bb5bced52c3f42b696863d5d43618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
-  canDamageTime: 0
+  damage: 100
 --- !u!114 &114468953301168994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2469,6 +2468,7 @@ MonoBehaviour:
   damping: 10
   speedSmoothTime: 0.1
   attackTime: 0
+  animIsAttacking: 0
 --- !u!137 &137423302889414102
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -967,6 +967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   expToGive: 50
+  ragdollPrefab: {fileID: 0}
 --- !u!1 &834166086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1380,11 @@ Prefab:
         type: 2}
       propertyPath: m_Center.x
       value: 0.092309326
+      objectReference: {fileID: 0}
+    - target: {fileID: 54585332703161010, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dbe4769558a29c44a3800ff88f7a5b2, type: 2}
@@ -2770,3 +2776,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   expToGive: 25
+  ragdollPrefab: {fileID: 0}
