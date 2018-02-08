@@ -71,6 +71,11 @@ public class EnemyController : MonoBehaviour
         
         animSpeedPercent = agent.velocity.magnitude;
         animator.SetFloat("speedPercent", animSpeedPercent, 0.5f, Time.deltaTime);
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Impact"))
+        {
+            animator.SetBool("Impact", false);
+        }
     }
 
     void FaceTarget()
@@ -86,12 +91,20 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 
+
     public void AttackEnd1()
     {
         if(canDamage == true)
         {
             playerScript.DoHit();
-            playerStats.currentHealth -= 5;
+            if(playerScript.isBlocking == false)
+            {
+                playerStats.currentHealth -= 5;
+            }
+            else if(playerScript.isBlocking == true)
+            {
+                animator.SetBool("Impact", true);
+            }
         }
     }
 
@@ -100,7 +113,14 @@ public class EnemyController : MonoBehaviour
         if (canDamage == true)
         {
             playerScript.DoHit();
-            playerStats.currentHealth -= 5;
+            if (playerScript.isBlocking == false)
+            {
+                playerStats.currentHealth -= 5;
+            }
+            else if (playerScript.isBlocking == true)
+            {
+                animator.SetBool("Impact", true);
+            }
         }
     }
 }

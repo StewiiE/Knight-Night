@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     // Animation Vars
     public bool animIsAttacking = false;
     private bool isRolling = false;
+    public bool isBlocking = false;
 
 
     // Use this for initialization
@@ -69,14 +70,17 @@ public class Player : MonoBehaviour
             {
                 if(isRolling == false)
                 {
-                    bool running = Input.GetKey(KeyCode.LeftShift);
-                    float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
-                    currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+                    if(isBlocking == false)
+                    {
+                        bool running = Input.GetKey(KeyCode.LeftShift);
+                        float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+                        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-                    transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+                        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
 
-                    float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
-                    anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                        float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
+                        anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                    }
                 }
             }
         }
@@ -159,14 +163,15 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
-            Debug.Log("Blocking");
             anim.SetBool("isBlocking", true);
+            isBlocking = true;
         }
         else
         {
             anim.SetBool("isBlocking", false);
+            isBlocking = false;
         }
 
     }
@@ -193,7 +198,14 @@ public class Player : MonoBehaviour
     {
         if(anim.GetBool("isDead") == false)
         {
-            anim.Play("GetHit", 0, 0.0f);
+            if(isBlocking == false)
+            {
+                anim.Play("GetHit", 0, 0.0f);
+            }
+            else if(isBlocking == true)
+            {
+                anim.Play("BlockReact", 0, 0.0f);
+            }
         }
     }
 
