@@ -329,7 +329,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400134, guid: 39d03f82786b57d41af8bd27bce84402, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400134, guid: 39d03f82786b57d41af8bd27bce84402, type: 3}
       propertyPath: m_LocalScale.x
@@ -731,6 +731,52 @@ CapsuleCollider:
   m_Height: 0.15866236
   m_Direction: 0
   m_Center: {x: -0.07933118, y: 0, z: 0}
+--- !u!1001 &638293929
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.3140552
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &712659470 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100096, guid: 39d03f82786b57d41af8bd27bce84402, type: 3}
@@ -1107,6 +1153,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 870425225}
+--- !u!1001 &973326122
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5.5016494
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &990856231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1452,21 @@ Prefab:
     - target: {fileID: 4610933804386600, guid: 3dbe4769558a29c44a3800ff88f7a5b2, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 96485598662045002, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
+        type: 2}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.77205884
+      objectReference: {fileID: 0}
+    - target: {fileID: 96485598662045002, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
+        type: 2}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.77205884
+      objectReference: {fileID: 0}
+    - target: {fileID: 96485598662045002, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
+        type: 2}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.77205884
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dbe4769558a29c44a3800ff88f7a5b2, type: 2}
@@ -1687,6 +1794,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 29.278002, y: 0, z: 0}
+--- !u!1001 &1360127310
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.6483506
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1399363680 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100004, guid: 39d03f82786b57d41af8bd27bce84402, type: 3}
@@ -2083,7 +2236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1536933300 stripped
 GameObject:
@@ -2161,6 +2314,52 @@ CapsuleCollider:
   m_Height: 0.103620104
   m_Direction: 0
   m_Center: {x: -0.051810052, y: 0, z: 0}
+--- !u!1001 &1584510165
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.3140552
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1588201778 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100046, guid: 39d03f82786b57d41af8bd27bce84402, type: 3}
@@ -2355,6 +2554,52 @@ CapsuleCollider:
   m_Height: 0.18588014
   m_Direction: 0
   m_Center: {x: -0.09294007, y: 0, z: 0}
+--- !u!1001 &1716049079
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1753929287 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1100442140630086, guid: 3dbe4769558a29c44a3800ff88f7a5b2,
@@ -2444,6 +2689,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1001 &1910274734
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5.5016494
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.3140552
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1924159751 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100042, guid: 39d03f82786b57d41af8bd27bce84402, type: 3}
@@ -2520,6 +2811,52 @@ CapsuleCollider:
   m_Height: 0.17813852
   m_Direction: 0
   m_Center: {x: -0.08906926, y: 0, z: 0}
+--- !u!1001 &1972327121
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958940807635096, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+      propertyPath: m_Name
+      value: paladin_prop_j_nordstrom (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &2007696042
 Prefab:
   m_ObjectHideFlags: 0

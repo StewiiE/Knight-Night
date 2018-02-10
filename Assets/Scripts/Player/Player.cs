@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public bool animIsAttacking = false;
     private bool isRolling = false;
     public bool isBlocking = false;
+    public bool isSlashing = false;
 
 
     // Use this for initialization
@@ -98,7 +99,10 @@ public class Player : MonoBehaviour
         // Attack button
         if (Input.GetButtonDown("Attack"))
         {
-            Attack();
+            if(isRolling == false)
+            {
+                Attack();
+            }
         }
 
         #region Rotate Camera On Attack
@@ -158,8 +162,11 @@ public class Player : MonoBehaviour
         {
             if(isRolling == false)
             {
-                rb.AddRelativeForce(Vector3.forward * 2000);
-                anim.Play("Roll", 0, 0.0f);
+                if(isSlashing == false)
+                {
+                    rb.AddRelativeForce(Vector3.forward * 3000);
+                    anim.Play("Roll", 0, 0.0f);
+                }
             }
         }
 
@@ -217,5 +224,15 @@ public class Player : MonoBehaviour
     public void AttackEnd()
     {
         animIsAttacking = false;
+    }
+
+    public void StartSlash()
+    {
+        isSlashing = true;
+    }
+
+    public void EndSlash()
+    {
+        isSlashing = false;
     }
 }
