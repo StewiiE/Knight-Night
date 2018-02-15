@@ -69,7 +69,8 @@ public class EnemyController : MonoBehaviour
         }
 
         
-        animSpeedPercent = agent.velocity.magnitude;
+        animSpeedPercent = agent.velocity.magnitude / agent.speed;
+
         animator.SetFloat("speedPercent", animSpeedPercent, 0.5f, Time.deltaTime);
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Impact"))
