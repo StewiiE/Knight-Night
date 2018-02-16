@@ -31,12 +31,19 @@ public class PlayerStats : MonoBehaviour
 		if(currentExp >= toLevelUp[currentLevel])
         {
             currentLevel++;
+
+            // Do level up stuff
         }
 
         if(currentHealth <= 0)
         {
             playerScript.enabled = false;
             Death();
+        }
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
         }
 	}
 

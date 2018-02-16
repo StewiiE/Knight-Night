@@ -87,14 +87,14 @@ public class Player : MonoBehaviour
         }
 
         // Quit game
-        if (Input.GetKeyDown(KeyCode.Escape))
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
-        }
+        } */
 
         // Attack button
         if (Input.GetButtonDown("Attack"))

@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
             if(ragdollJoints[i].GetComponent<Rigidbody>() != null)
             {
                 Rigidbody rb = ragdollJoints[i].GetComponent<Rigidbody>();
-                rb.AddRelativeForce(ragdollMaster.transform.forward * 4000);
+                rb.AddRelativeForce(-ragdollMaster.transform.forward * 4000);
             }
         }
 
