@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     Transform optionsPanel;
     Animator optionsAnim;
 
+    Transform pausePanel;
+    Animator pauseAnim;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -36,6 +39,9 @@ public class UIManager : MonoBehaviour
 
         optionsPanel = this.transform.Find("OptionsPanel").transform;
         optionsAnim = optionsPanel.GetComponent<Animator>();
+
+        pausePanel = this.transform.Find("PausePanel").transform;
+        pauseAnim = pausePanel.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -47,17 +53,31 @@ public class UIManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            onOff = !onOff;
-
-            if(onOff)
-            {
-                optionsAnim.SetTrigger("Open");
-                
-            }
-            else
-            {
-                optionsAnim.SetTrigger("Close");
-            }
+          //  PausePanel();
         }
 	}
+
+    public void PausePanel()
+    {
+        onOff = !onOff;
+
+        if (onOff)
+        {
+            optionsAnim.SetTrigger("Open");
+            pauseAnim.SetTrigger("Open");
+
+            Time.timeScale = 0f;
+
+            Cursor.visible = true;
+        }
+        else
+        {
+            optionsAnim.SetTrigger("Close");
+            pauseAnim.SetTrigger("Close");
+
+            Time.timeScale = 1f;
+
+            Cursor.visible = false;
+        }
+    }
 }

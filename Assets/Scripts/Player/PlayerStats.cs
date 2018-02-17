@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour
 
     Animator playerAnimator;
 
+    public float levelUpRadius;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -33,6 +35,8 @@ public class PlayerStats : MonoBehaviour
             currentLevel++;
 
             // Do level up stuff
+
+            playerAnimator.Play("LevelUp", 0, 0.0f);
         }
 
         if(currentHealth <= 0)

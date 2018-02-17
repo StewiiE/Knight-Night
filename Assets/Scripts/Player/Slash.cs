@@ -21,10 +21,20 @@ public class Slash : MonoBehaviour
 		if(player.isSlashing == true)
         {
             weaponTrail.enabled = true;
+            StartCoroutine(SlashEffectTime());
         }
         else if(player.isSlashing == false)
         {
             weaponTrail.enabled = false;
         }
 	}
+
+    IEnumerator SlashEffectTime()
+    {
+        if(player.isSlashing == true)
+        {
+            yield return new WaitForSeconds(0.6f);
+            player.isSlashing = false;
+        }
+    }
 }

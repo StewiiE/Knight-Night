@@ -6,8 +6,6 @@ public class PlayerMaul : MonoBehaviour
 {
     public float damage = 100f;
 
-    float force = 50f;
-
     Player player;
 
 	// Use this for initialization
@@ -23,14 +21,7 @@ public class PlayerMaul : MonoBehaviour
             if(player.animIsAttacking == true)
             {
                 Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
-                Rigidbody enemyRb = other.gameObject.GetComponent<Rigidbody>();
                 enemyScript.TakeDamage(damage);
-
-                enemyRb.AddForce(player.gameObject.transform.forward * force, ForceMode.Impulse);
-
-                enemyRb.AddExplosionForce(force * 10f, player.transform.position, 100f);
-
-                Debug.Log("Hit enemy");
             }
         }
     }

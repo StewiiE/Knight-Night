@@ -14,12 +14,16 @@ public class Enemy : MonoBehaviour
     public GameObject ragdollPrefab;
     Rigidbody ragdollRB;
 
+    Rigidbody rb;
+
 	// Use this for initialization
 	void Start ()
     {
         currentHealth = 100f;
 
         thePlayerStats = FindObjectOfType<PlayerStats>();
+
+        rb = this.gameObject.GetComponent<Rigidbody>();
 	}
 
     // Update is called once per frame
@@ -76,8 +80,10 @@ public class Enemy : MonoBehaviour
                 rb.AddRelativeForce(-ragdollMaster.transform.forward * 4000);
             }
         }
+    }
 
-       // Rigidbody ragdollMasterRB = ragdollMaster.GetComponent<Rigidbody>();
-       // ragdollMasterRB.AddRelativeForce(ragdollMaster.transform.forward * 20000);
+    public void AddForceToEnemy()
+    {
+        rb.AddForce(-transform.forward * 4000);
     }
 }

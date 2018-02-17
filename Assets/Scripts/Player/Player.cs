@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private bool isRolling = false;
     public bool isBlocking = false;
     public bool isSlashing = false;
+    public bool isLevelingUp = false;
 
 
     // Use this for initialization
@@ -63,8 +64,8 @@ public class Player : MonoBehaviour
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
         }
 
-
-        // Don't move if attacking
+        #region Movement
+        // Movement
         if (isAttacking == false)
         {
             if (gotHit == false)
@@ -73,28 +74,22 @@ public class Player : MonoBehaviour
                 {
                     if(isBlocking == false)
                     {
-                        bool running = Input.GetKey(KeyCode.LeftShift);
-                        float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
-                        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+                        if(isLevelingUp == false)
+                        {
+                            bool running = Input.GetKey(KeyCode.LeftShift);
+                            float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+                            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-                        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+                            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
 
-                        float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
-                        anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                            float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
+                            anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+                        }
                     }
                 }
             }
         }
-
-        // Quit game
-       /* if (Input.GetKeyDown(KeyCode.Escape))
-        {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
-        } */
+        #endregion
 
         // Attack button
         if (Input.GetButtonDown("Attack"))
@@ -113,11 +108,6 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y, 0f));
         }
         #endregion
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            playerStats.currentHealth -= 10;
-        }
 
         #region Got Hit
 
@@ -158,6 +148,18 @@ public class Player : MonoBehaviour
 
         #endregion
 
+        #region is Leveling Up
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("LevelUp"))
+        {
+            isLevelingUp = true;
+        }
+        else
+        {
+            isLevelingUp = false;
+        }
+        #endregion
+
+        #region Do Roll
         if (Input.GetKeyDown(KeyCode.G))
         {
             if(isRolling == false)
@@ -169,7 +171,9 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        #endregion
 
+        #region Block
         if (Input.GetKey(KeyCode.Q))
         {
             anim.SetBool("isBlocking", true);
@@ -180,7 +184,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isBlocking", false);
             isBlocking = false;
         }
-
+        #endregion
     }
 
     // Attack
@@ -219,6 +223,7 @@ public class Player : MonoBehaviour
     public void AttackStart()
     {
         animIsAttacking = true;
+        StartCoroutine(AttackEnded());
     }
 
     public void AttackEnd()
@@ -233,6 +238,27 @@ public class Player : MonoBehaviour
 
     public void EndSlash()
     {
-        isSlashing = false;
+     //   isSlashing = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(isLevelingUp)
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                Debug.Log("Enemy within range");
+
+                Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
+                enemyScript.TakeDamage(20f);
+                enemyScript.AddForceToEnemy();
+            }
+        }
+    }
+
+    IEnumerator AttackEnded()
+    {
+        yield return new WaitForSeconds(1f);
+        animIsAttacking = false;
     }
 }
