@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
 
     Rigidbody rb;
 
+    GameObject player;
+    Player playerScript;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -24,6 +27,9 @@ public class Enemy : MonoBehaviour
         thePlayerStats = FindObjectOfType<PlayerStats>();
 
         rb = this.gameObject.GetComponent<Rigidbody>();
+
+        player = PlayerManager.instance.player;
+        playerScript = player.GetComponent<Player>();
 	}
 
     // Update is called once per frame
@@ -46,7 +52,10 @@ public class Enemy : MonoBehaviour
 
         Destroy(this.gameObject);
 
-        thePlayerStats.AddExperience(expToGive);
+        if(playerScript.isLevelingUp == false)
+        {
+            thePlayerStats.AddExperience(expToGive);
+        }
     }
 
     public void RagdollDeath()

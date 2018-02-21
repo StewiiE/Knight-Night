@@ -13,10 +13,12 @@ public class PlayerStats : MonoBehaviour
     public int maxHealth;
 
     Player playerScript;
+    Abilities abilitiesScript;
 
     Animator playerAnimator;
 
-    public float levelUpRadius;
+    public GameObject levelUpPrefab;
+    public GameObject levelUpPrefab2;
 
 	// Use this for initialization
 	void Start ()
@@ -25,6 +27,7 @@ public class PlayerStats : MonoBehaviour
         currentHealth += maxHealth;
         playerScript = player.GetComponent<Player>();
         playerAnimator = player.GetComponent<Animator>();
+        abilitiesScript = player.GetComponent<Abilities>();
     }
 	
 	// Update is called once per frame
@@ -35,6 +38,14 @@ public class PlayerStats : MonoBehaviour
             currentLevel++;
 
             // Do level up stuff
+
+            GameObject particle1 =  Instantiate(levelUpPrefab, player.transform.position, Quaternion.identity) as GameObject;
+            GameObject particle2 =  Instantiate(levelUpPrefab2, player.transform.position, Quaternion.identity) as GameObject;
+
+            particle1.transform.parent = player.transform;
+            particle2.transform.parent = player.transform;
+
+            abilitiesScript.Explode();
 
             playerAnimator.Play("LevelUp", 0, 0.0f);
         }

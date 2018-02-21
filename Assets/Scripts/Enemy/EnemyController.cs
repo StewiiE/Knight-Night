@@ -68,7 +68,6 @@ public class EnemyController : MonoBehaviour
             animator.SetBool("Attack", false);
         }
 
-        
         animSpeedPercent = agent.velocity.magnitude / agent.speed;
 
         animator.SetFloat("speedPercent", animSpeedPercent, 0.5f, Time.deltaTime);

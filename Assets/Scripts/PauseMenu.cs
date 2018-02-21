@@ -18,6 +18,14 @@ public class PauseMenu : MonoBehaviour
     {
         optionsAnim = optionsMenuUI.GetComponent<Animator>();
         pauseAnim = pauseMenuUI.GetComponent<Animator>();
+
+        pauseMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+        pauseMenuUI.GetComponent<CanvasGroup>().interactable = false;
+        pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        optionsMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+        optionsMenuUI.GetComponent<CanvasGroup>().interactable = false;
+        optionsMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 	
 	// Update is called once per frame
@@ -48,6 +56,14 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        pauseMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+        pauseMenuUI.GetComponent<CanvasGroup>().interactable = false;
+        pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        optionsMenuUI.GetComponent<CanvasGroup>().alpha = 0;
+        optionsMenuUI.GetComponent<CanvasGroup>().interactable = false;
+        optionsMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     void Pause()
@@ -63,6 +79,14 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
 
         pauseMenuUI.SetActive(true);
+
+        pauseMenuUI.GetComponent<CanvasGroup>().alpha = 1;
+        pauseMenuUI.GetComponent<CanvasGroup>().interactable = true;
+        pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        optionsMenuUI.GetComponent<CanvasGroup>().alpha = 1;
+        optionsMenuUI.GetComponent<CanvasGroup>().interactable = true;
+        optionsMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     public void Options()
