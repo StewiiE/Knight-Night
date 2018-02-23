@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,14 +40,6 @@ public class Player : MonoBehaviour
     public bool isSlashing = false;
     public bool isLevelingUp = false;
 
-    // Audio
-    public GameObject footstep1GO;
-    AudioSource footstep1Sound;
-    public GameObject footstep2GO;
-    AudioSource footstep2Sound;
-
-
-
     // Use this for initialization
     void Start ()
     {
@@ -57,9 +49,6 @@ public class Player : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
 
         attackTime = 2f;
-
-        footstep1Sound = footstep1GO.GetComponent<AudioSource>();
-        footstep2Sound = footstep2GO.GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -268,15 +257,5 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         animIsAttacking = false;
-    }
-
-    public void FirstFootstep()
-    {
-        footstep1Sound.Play();
-    }
-
-    public void SecondFootstep()
-    {
-        footstep2Sound.Play();
     }
 }

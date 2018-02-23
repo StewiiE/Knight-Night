@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,8 +55,6 @@ public class PauseMenu : MonoBehaviour
 
         gameIsPaused = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
-
         pauseMenuUI.GetComponent<CanvasGroup>().alpha = 0;
         pauseMenuUI.GetComponent<CanvasGroup>().interactable = false;
         pauseMenuUI.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -74,9 +72,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
 
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Locked;
 
         gameIsPaused = true;
+		Cursor.lockState = CursorLockMode.Confined;
 
         pauseMenuUI.SetActive(true);
 
