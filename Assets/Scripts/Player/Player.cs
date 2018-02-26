@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
+[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
-    Animator anim;
+	#region Variables
+
+	Animator anim;
     Rigidbody rb;
     Transform cameraT;
     
@@ -39,14 +43,21 @@ public class Player : MonoBehaviour
     public bool isBlocking = false;
     public bool isSlashing = false;
     public bool isLevelingUp = false;
+	public bool canAddLevelUpForce = false;
 
-    // Use this for initialization
-    void Start ()
+	GameObject maulSwingGO;
+
+	#endregion
+
+	// Use this for initialization
+	void Start ()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         cameraT = Camera.main.transform;
         playerStats = FindObjectOfType<PlayerStats>();
+
+		maulSwingGO = this.transform.Find("hips/spine/chest/R_shoulder/R_arm/R_elbow/R_wrist/Maul1/MaulAudio/Swing").gameObject;
 
         attackTime = 2f;
     }
@@ -75,21 +86,29 @@ public class Player : MonoBehaviour
                     {
                         if(isLevelingUp == false)
                         {
-                            bool running = Input.GetKey(KeyCode.LeftShift);
-                            float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
-                            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+							/* bool running = Input.GetKey(KeyCode.LeftShift);
+							 float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+							 currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-                            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+							 transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
 
-                            float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
-                            anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
-                        }
+							 float animationSpeedPercent = ((running) ? 1 : 0.5f) * inputDir.magnitude;
+							 anim.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
+							 */
+
+							// New Movement
+							Moving();
+							Running();
+							Turning();
+							
+						}
                     }
                 }
             }
         }
         #endregion
 
+		
         // Attack button
         if (Input.GetButtonDown("Attack"))
         {
@@ -183,11 +202,32 @@ public class Player : MonoBehaviour
             anim.SetBool("isBlocking", false);
             isBlocking = false;
         }
-        #endregion
+		#endregion
     }
 
-    // Attack
-    public void Attack()
+	void Moving()
+	{
+		anim.SetFloat("Forward", Input.GetAxis("Vertical") * 1f);
+	}
+	void Running()
+	{
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			anim.SetBool("Run", true);
+		}
+		if (Input.GetKeyUp(KeyCode.LeftShift))
+		{
+			anim.SetBool("Run", false);
+		}
+	}
+
+	void Turning()
+	{
+		anim.SetFloat("Turning", Input.GetAxis("Horizontal"));
+	}
+
+	// Attack
+	public void Attack()
     {
         if(!isAttacking)
            StartCoroutine(AttackAnim());
@@ -219,10 +259,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AttackStart()
+	#region Animation Events
+	public void AttackStart()
     {
         animIsAttacking = true;
-        StartCoroutine(AttackEnded());
+		StartCoroutine(AttackEnded());
     }
 
     public void AttackEnd()
@@ -240,20 +281,18 @@ public class Player : MonoBehaviour
      //   isSlashing = false;
     }
 
+	public void SwingAudio()
+	{
+		maulSwingGO.GetComponent<AudioSource>().Play();
+	}
+
     private void OnTriggerEnter(Collider other)
     {
-        if(isLevelingUp)
-        {
-            if (other.gameObject.tag == "Enemy")
-            {
-                Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
-                enemyScript.TakeDamage(20f);
-                enemyScript.AddForceToEnemy();
-            }
-        }
     }
 
-    IEnumerator AttackEnded()
+	#endregion
+
+	IEnumerator AttackEnded()
     {
         yield return new WaitForSeconds(1f);
         animIsAttacking = false;

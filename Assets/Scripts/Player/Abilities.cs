@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Abilities : MonoBehaviour
 {
-    public float explosivePower = 1000.0f;
-    public float radius = 1000.0f;
+    public float explosivePower = 10.0f;
+    public float radius = 10.0f;
     public float upForce = 10.0f;
 
     public void Explode()
@@ -26,7 +26,7 @@ public class Abilities : MonoBehaviour
                     if(rb.tag == "Enemy")
                     {
                         Enemy enemyScript = rb.gameObject.GetComponent<Enemy>();
-                        enemyScript.Death();
+                        enemyScript.TakeDamage(100f);
                     }
                 }
             }

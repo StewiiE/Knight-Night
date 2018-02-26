@@ -1,11 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
-    public float currentHealth;
+	public float currentHealth;
     float maxHealth = 100f;
 
     private PlayerStats thePlayerStats;
@@ -15,6 +14,7 @@ public class Enemy : MonoBehaviour
     Rigidbody ragdollRB;
 
     Rigidbody rb;
+	Animator animator;
 
     GameObject player;
     Player playerScript;
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
         thePlayerStats = FindObjectOfType<PlayerStats>();
 
         rb = this.gameObject.GetComponent<Rigidbody>();
+		animator = GetComponent<Animator>();
 
         player = PlayerManager.instance.player;
         playerScript = player.GetComponent<Player>();
@@ -43,8 +44,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth = currentHealth -= damage;
-    }
+		EnemyController enemyController = GetComponent<EnemyController>();
+		currentHealth = currentHealth -= damage;
+		enemyController.canMove = false;
+		animator.Play("KnockDown");
+	}
 
     public void Death()
     {
@@ -89,10 +93,5 @@ public class Enemy : MonoBehaviour
                 rb.AddRelativeForce(-ragdollMaster.transform.forward * 4000);
             }
         }
-    }
-
-    public void AddForceToEnemy()
-    {
-        rb.AddForce(-transform.forward * 4000);
     }
 }

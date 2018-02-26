@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     private PlayerStats playerStats;
 
     float animSpeedPercent;
+	public bool canMove = true;
 
     // Use this for initialization
     void Start()
@@ -44,23 +45,24 @@ public class EnemyController : MonoBehaviour
         float distance = Vector3.Distance(target.position, transform.position);
         if(distance <= lookRadius)
         {
-            agent.SetDestination(target.position);
+			if(canMove == true)
+			{
+				agent.SetDestination(target.position);
 
-            if (distance <= agent.stoppingDistance)
-            {
-                // Attack
+				if (distance <= agent.stoppingDistance)
+				{
+					canDamage = true;
 
-                canDamage = true;
+					FaceTarget();
 
-                FaceTarget();
-
-                animator.SetBool("Attack", true);
-            }
-            else
-            {
-                animator.SetBool("Attack", false);
-                canDamage = false;
-            }
+					animator.SetBool("Attack", true);
+				}
+				else
+				{
+					animator.SetBool("Attack", false);
+					canDamage = false;
+				}
+			}
         }
 
         if(playerScript.enabled == false)
@@ -76,9 +78,19 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("Impact", false);
         }
-    }
 
-    void FaceTarget()
+		if (animator.GetCurrentAnimatorStateInfo(0).IsName("KnockDown") || animator.GetCurrentAnimatorStateInfo(0).IsName("GetUp"))
+		{
+			canMove = false;
+		}
+		else
+		{
+			canMove = true;
+		}
+		Debug.Log(canMove);
+	}
+
+	void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
