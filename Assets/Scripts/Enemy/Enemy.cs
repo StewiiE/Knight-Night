@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
     {
         RagdollDeath();
 
+		playerScript.Enemies.Remove(this.transform);
+
         Destroy(this.gameObject);
 
         if(playerScript.isLevelingUp == false)

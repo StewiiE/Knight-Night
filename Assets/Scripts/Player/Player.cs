@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     // Player rotation
     public float turnSmoothTime = 0.2f;
     float turnSmoothVelocity;
-    public float damping = 100f;
+    public float damping = 1f;
+	float turnSpeed = 10f;
 
     // Smooth speed
     public float speedSmoothTime = 0.1f;
@@ -37,15 +38,24 @@ public class Player : MonoBehaviour
 
     bool gotHit = false;
 
-    // Animation Vars
-    public bool animIsAttacking = false;
+	#region Anim Vars
+	// Animation Vars
+	public bool animIsAttacking = false;
     private bool isRolling = false;
     public bool isBlocking = false;
     public bool isSlashing = false;
     public bool isLevelingUp = false;
 	public bool canAddLevelUpForce = false;
+	private bool lockedOn;
+	#endregion
 
 	GameObject maulSwingGO;
+
+	int curTarget;
+	bool changeTarget;
+	bool switchCoroutineRunning = false;
+
+	public List<Transform> Enemies = new List<Transform>();
 
 	#endregion
 
@@ -61,7 +71,12 @@ public class Player : MonoBehaviour
 
         attackTime = 2f;
     }
-	
+
+	private void FixedUpdate()
+	{
+		HandleTargetsLogic();
+	}
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -184,8 +199,13 @@ public class Player : MonoBehaviour
             {
                 if(isSlashing == false)
                 {
-                    rb.AddRelativeForce(Vector3.forward * 3000);
-                    anim.Play("Roll", 0, 0.0f);
+					if(playerStats.currentMana >= 25)
+					{
+						lockedOn = false;
+						// rb.AddRelativeForce(Vector3.forward * 3000);
+						anim.Play("Roll", 0, 0.0f);
+						playerStats.currentMana -= 25;
+					}
                 }
             }
         }
@@ -203,7 +223,9 @@ public class Player : MonoBehaviour
             isBlocking = false;
         }
 		#endregion
-    }
+
+		LockOn();
+	}
 
 	void Moving()
 	{
@@ -297,4 +319,95 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         animIsAttacking = false;
     }
+
+	void HandleTargetsLogic()
+	{
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			StartCoroutine(SelectTargetToggle());
+		}
+
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			if(switchCoroutineRunning == false)
+			{
+				StartCoroutine(SwitchTargetToggle());
+			}
+		}
+	}
+
+	void LockOn()
+	{
+		if(Enemies.Count >= 1)
+		{
+			if (lockedOn)
+			{
+				anim.SetBool("LockOn", true);
+				Vector3 dir = Enemies[curTarget].position - transform.position;
+				Quaternion lookRotation = Quaternion.LookRotation(dir);
+				Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+				transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+				foreach (Transform enemy in Enemies)
+				{
+					if (enemy.Equals(Enemies[curTarget]))
+					{
+						GameObject curEnemy = enemy.gameObject;
+						ToggleOutine toggleOutine = curEnemy.GetComponent<ToggleOutine>();
+						toggleOutine.showOutline = true;
+					}
+					else
+					{
+						GameObject curEnemy = enemy.gameObject;
+						ToggleOutine toggleOutine = curEnemy.GetComponent<ToggleOutine>();
+						toggleOutine.showOutline = false;
+					}
+				}
+			}
+			else
+			{
+				anim.SetBool("LockOn", false);
+				foreach (Transform enemy in Enemies)
+				{
+						GameObject curEnemy = enemy.gameObject;
+						ToggleOutine toggleOutine = curEnemy.GetComponent<ToggleOutine>();
+						toggleOutine.showOutline = false;
+				}
+			}
+		}
+	}
+
+	IEnumerator SelectTargetToggle()
+	{
+		if (lockedOn)
+		{
+			yield return new WaitForSeconds(0.2f);
+			lockedOn = false;
+		}
+		else if (lockedOn == false)
+		{
+			yield return new WaitForSeconds(0.2f);
+			lockedOn = true;
+		}
+		Debug.Log(lockedOn);
+	}
+	IEnumerator SwitchTargetToggle()
+	{
+		if (curTarget < Enemies.Count - 1)
+		{
+			switchCoroutineRunning = true;
+			yield return new WaitForSeconds(0.2f);
+			curTarget++;
+			switchCoroutineRunning = false;
+		}
+		else
+		{
+			switchCoroutineRunning = true;
+			yield return new WaitForSeconds(0.2f);
+			curTarget = 0;
+			switchCoroutineRunning = false;
+		}
+		Debug.Log(curTarget);
+		Debug.Log("Enemy count: " + Enemies.Count);
+	}
 }

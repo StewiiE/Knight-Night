@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     public Text healthText;
     public Image healthbar;
+	public Image manaBar;
 
     private static bool UIExists;
 
@@ -48,8 +49,9 @@ public class UIManager : MonoBehaviour
 	void Update ()
     {
         levelText.text = "" + playerStats.currentLevel;
-        healthText.text = "HP: " + playerStats.currentHealth + "/" + playerStats.maxHealth;
-        healthbar.fillAmount = playerStats.currentHealth / 100f;
+        healthText.text = "HP: " + playerStats.currentHealth.ToString("F0") + "/" + playerStats.maxHealth.ToString("F0");
+        healthbar.fillAmount = playerStats.currentHealth / 100.0f;
+		manaBar.fillAmount = playerStats.currentMana / 100.0f;
 
         if(Input.GetKeyDown(KeyCode.Escape))
         {

@@ -87,7 +87,6 @@ public class EnemyController : MonoBehaviour
 		{
 			canMove = true;
 		}
-		Debug.Log(canMove);
 	}
 
 	void FaceTarget()

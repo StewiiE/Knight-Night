@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +9,12 @@ public class PlayerStats : MonoBehaviour
     public int currentExp;
     public int[] toLevelUp;
 
-    public int currentHealth;
-    public int maxHealth;
+    public float currentHealth;
+    public float maxHealth;
+
+	public float currentMana;
+	public float maxMana;
+	float regenRate;
 
     Player playerScript;
     Abilities abilitiesScript;
@@ -23,7 +27,11 @@ public class PlayerStats : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        maxHealth = 100;
+		currentLevel = 1;
+        maxHealth = 100.0f;
+		maxMana = 100.0f;
+		regenRate = 1.0f;
+		currentMana += maxMana;
         currentHealth += maxHealth;
         playerScript = player.GetComponent<Player>();
         playerAnimator = player.GetComponent<Animator>();
@@ -60,6 +68,16 @@ public class PlayerStats : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+
+		if(currentHealth < maxHealth)
+		{
+			currentHealth += regenRate * Time.deltaTime;
+		}
+
+		if(currentMana < maxMana)
+		{
+			currentMana += regenRate * Time.deltaTime;
+		}
 	}
 
     public void AddExperience(int experienceToAdd)

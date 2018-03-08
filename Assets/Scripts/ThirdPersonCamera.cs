@@ -1,9 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+	Camera cam;
+
     public bool lockCursor;
     public float mouseSensitivity = 10;
     public Transform target;
@@ -19,12 +21,24 @@ public class ThirdPersonCamera : MonoBehaviour
 	
     void Start()
     {
+		cam = GetComponent<Camera>();
+
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
+
+	void Update()
+	{
+		/*Ray ray = cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit))
+			print("I'm looking at " + hit.transform.name);
+		else
+			print("I'm looking at nothing!"); */
+	}
 
 	// Update is called once per frame
 	void LateUpdate ()
