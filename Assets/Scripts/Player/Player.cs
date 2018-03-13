@@ -150,6 +150,7 @@ namespace S019745F
 					m_Canvas.gameObject.SetActive(m_SeeCanvas); // Toggle canvas
 					Cursor.visible = true;
 					Cursor.lockState = CursorLockMode.None;
+					//m_Canvas.
 				}
 			}
 
