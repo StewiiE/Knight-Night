@@ -15,7 +15,9 @@ namespace S019745F
 		Transform cameraT;
 
 		[SerializeField]
-		private Canvas m_Canvas;
+		private Canvas skillsPanel;
+		[SerializeField]
+		private Canvas attributesPanel;
 		private bool m_SeeCanvas;
 
 		// Attack vars
@@ -144,13 +146,25 @@ namespace S019745F
 
 			if(Input.GetKeyDown("tab"))
 			{
-				if(m_Canvas)
+				if(skillsPanel)
 				{
 					m_SeeCanvas = !m_SeeCanvas;
-					m_Canvas.gameObject.SetActive(m_SeeCanvas); // Toggle canvas
-					Cursor.visible = true;
-					Cursor.lockState = CursorLockMode.None;
-					//m_Canvas.
+					skillsPanel.gameObject.SetActive(m_SeeCanvas); // Toggle canvas
+					if (attributesPanel)
+						attributesPanel.gameObject.SetActive(m_SeeCanvas); 
+
+					if(m_SeeCanvas == true)
+					{
+						Time.timeScale = 0f;
+						Cursor.visible = true;
+						Cursor.lockState = CursorLockMode.None;
+					}
+					else
+					{
+						Time.timeScale = 1f;
+						Cursor.visible = false;
+						Cursor.lockState = CursorLockMode.Locked;
+					}
 				}
 			}
 
