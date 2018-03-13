@@ -2,92 +2,112 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+namespace S019745F
 {
-    public GameObject player;
-    public int currentLevel;
-    public int currentExp;
-    public int[] toLevelUp;
+	public class PlayerStats : MonoBehaviour
+	{
+		public GameObject player;
+		public PlayerStats playerStats;
 
-    public float currentHealth;
-    public float maxHealth;
+		[Header("Levels")]
+		public int currentLevel;
+		public int currentExp;
+		public int expPoints;
+		public int[] toLevelUp;
 
-	public float currentMana;
-	public float maxMana;
-	float regenRate;
+		[Header("Stats")]
+		public float currentHealth;
+		public float maxHealth;
+		public float currentMana;
+		public float maxMana;
+		float regenRate;
 
-    Player playerScript;
-    Abilities abilitiesScript;
+		Player playerScript;
+		Abilities abilitiesScript;
 
-    Animator playerAnimator;
+		Animator playerAnimator;
 
-    public GameObject levelUpPrefab;
-    public GameObject levelUpPrefab2;
+		[Header("Particles")]
+		public GameObject levelUpPrefab;
+		public GameObject levelUpPrefab2;
 
-	// Use this for initialization
-	void Start ()
-    {
-		currentLevel = 1;
-        maxHealth = 100.0f;
-		maxMana = 100.0f;
-		regenRate = 1.0f;
-		currentMana += maxMana;
-        currentHealth += maxHealth;
-        playerScript = player.GetComponent<Player>();
-        playerAnimator = player.GetComponent<Animator>();
-        abilitiesScript = player.GetComponent<Abilities>();
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		if(currentExp >= toLevelUp[currentLevel])
-        {
-            currentLevel++;
+		[Header("Attributes")]
+		public List<PlayerAttributes> Attributes = new List<PlayerAttributes>();
 
-            // Do level up stuff
+		[Header("Player Skills Enabled")]
+		public List<Skills> PlayerSkills = new List<Skills>();
 
-            GameObject particle1 =  Instantiate(levelUpPrefab, player.transform.position, Quaternion.identity) as GameObject;
-            GameObject particle2 =  Instantiate(levelUpPrefab2, player.transform.position, Quaternion.identity) as GameObject;
-
-            particle1.transform.parent = player.transform;
-            particle2.transform.parent = player.transform;
-
-            abilitiesScript.Explode();
-
-            playerAnimator.Play("LevelUp", 0, 0.0f);
-        }
-
-        if(currentHealth <= 0)
-        {
-            playerScript.enabled = false;
-            Death();
-        }
-
-        if(currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-
-		if(currentHealth < maxHealth)
+		// Use this for initialization
+		void Start()
 		{
-			currentHealth += regenRate * Time.deltaTime;
+			if (currentLevel == 0)
+			{
+				currentLevel = 1;
+			}
+			maxHealth = 100.0f;
+			maxMana = 100.0f;
+			regenRate = 1.0f;
+			currentMana += maxMana;
+			currentHealth += maxHealth;
+			playerScript = player.GetComponent<Player>();
+			playerAnimator = player.GetComponent<Animator>();
+			abilitiesScript = player.GetComponent<Abilities>();
 		}
 
-		if(currentMana < maxMana)
+		// Update is called once per frame
+		void Update()
 		{
-			currentMana += regenRate * Time.deltaTime;
+			if (currentExp >= toLevelUp[currentLevel])
+			{
+				currentLevel++;
+
+				// Do level up stuff
+
+				GameObject particle1 = Instantiate(levelUpPrefab, player.transform.position, Quaternion.identity) as GameObject;
+				GameObject particle2 = Instantiate(levelUpPrefab2, player.transform.position, Quaternion.identity) as GameObject;
+
+				particle1.transform.parent = player.transform;
+				particle2.transform.parent = player.transform;
+
+				abilitiesScript.Explode();
+
+				playerAnimator.Play("LevelUp", 0, 0.0f);
+			}
+
+			if (currentHealth <= 0)
+			{
+				playerScript.enabled = false;
+				Death();
+			}
+
+			if (currentHealth > maxHealth)
+			{
+				currentHealth = maxHealth;
+			}
+
+			if (currentHealth < maxHealth)
+			{
+				currentHealth += regenRate * Time.deltaTime;
+			}
+
+			if (currentMana < maxMana)
+			{
+				currentMana += regenRate * Time.deltaTime;
+			}
+		}
+
+		public void AddExperience(int experienceToAdd)
+		{
+			currentExp += experienceToAdd;
+			expPoints += experienceToAdd;
+		}
+
+		public void Death()
+		{
+			playerAnimator.SetBool("isDead", true);
+			playerAnimator.Play("Death");
 		}
 	}
-
-    public void AddExperience(int experienceToAdd)
-    {
-        currentExp += experienceToAdd;
-    }
-
-    public void Death()
-    {
-        playerAnimator.SetBool("isDead", true);
-        playerAnimator.Play("Death");
-    }
 }
+
+

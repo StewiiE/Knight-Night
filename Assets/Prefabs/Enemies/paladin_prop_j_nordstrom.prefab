@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 4267491759384144}
   - component: {fileID: 137831587724192078}
   - component: {fileID: 114683324182826944}
+  - component: {fileID: 136331447031141618}
   m_Layer: 0
   m_Name: Paladin_J_Nordstrom
   m_TagString: Untagged
@@ -449,7 +450,6 @@ GameObject:
   - component: {fileID: 195304090686996328}
   - component: {fileID: 54749270809384628}
   - component: {fileID: 136723108975340856}
-  - component: {fileID: 135631987917063290}
   - component: {fileID: 114466982828720756}
   m_Layer: 0
   m_Name: paladin_prop_j_nordstrom
@@ -2330,18 +2330,19 @@ MonoBehaviour:
   lookRadius: 19.04
   sword: {fileID: 1586804821343860}
   canMove: 1
---- !u!135 &135631987917063290
-SphereCollider:
+--- !u!136 &136331447031141618
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1368332698961496}
+  m_GameObject: {fileID: 1240130510742970}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_Radius: 0.7417111
+  m_Height: 1.757731
+  m_Direction: 1
+  m_Center: {x: 0.06865582, y: 0.75461346, z: 0.09707528}
 --- !u!136 &136723108975340856
 CapsuleCollider:
   m_ObjectHideFlags: 1

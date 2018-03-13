@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e16742f8e07a4c04fa5d4c6674be62bc, type: 3}
+  m_Name: Olympian
+  m_EditorClassIdentifier: 
+  Description: Increase speed, strength and vitality by 100
+  Icon: {fileID: 0}
+  LevelNeeded: 10
+  XPNeeded: 30000
+  AffectedAttributes:
+  - attribute: {fileID: 11400000, guid: 04269fa0b35bd4d4ab73c87df6b2522c, type: 2}
+    amount: 100
+  - attribute: {fileID: 11400000, guid: c3f801c6e7803c34e8cbb523d4e3902f, type: 2}
+    amount: 100
+  - attribute: {fileID: 11400000, guid: 483283fce781eba478ba671c2363b993, type: 2}
+    amount: 100

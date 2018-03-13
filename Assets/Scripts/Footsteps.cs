@@ -2,22 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class Footsteps : MonoBehaviour
+namespace S019745F
 {
-	Player player;
-
-
-	private void Start()
+	[RequireComponent(typeof(AudioSource))]
+	public class Footsteps : MonoBehaviour
 	{
-		player = GetComponent<Player>();
-	}
+		Player player;
 
-	public void Step()
-	{
-		if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+
+		private void Start()
 		{
-			GetComponent<AudioSource>().Play();
+			player = GetComponent<Player>();
+		}
+
+		public void Step()
+		{
+			if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+			{
+				GetComponent<AudioSource>().Play();
+			}
 		}
 	}
 }
+

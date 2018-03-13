@@ -3,135 +3,139 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+namespace S019745F
 {
-    public float lookRadius = 7.5f;
+	public class EnemyController : MonoBehaviour
+	{
+		public float lookRadius = 7.5f;
 
-    Transform target;
-    NavMeshAgent agent;
-    Animator animator;
+		Transform target;
+		NavMeshAgent agent;
+		Animator animator;
 
-    GameObject player;
-    Player playerScript;
+		GameObject player;
+		Player playerScript;
 
-    public GameObject sword;
-    EnemySword swordScript;
+		public GameObject sword;
+		EnemySword swordScript;
 
-    bool canDamage;
+		bool canDamage;
 
-    private PlayerStats playerStats;
+		private PlayerStats playerStats;
 
-    float animSpeedPercent;
-	public bool canMove = true;
+		float animSpeedPercent;
+		public bool canMove = true;
 
-    // Use this for initialization
-    void Start()
-    {
-        target = PlayerManager.instance.player.transform;
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+		// Use this for initialization
+		void Start()
+		{
+			target = PlayerManager.instance.player.transform;
+			agent = GetComponent<NavMeshAgent>();
+			animator = GetComponent<Animator>();
 
-        player = PlayerManager.instance.player;
-        playerScript = player.GetComponent<Player>();
+			player = PlayerManager.instance.player;
+			playerScript = player.GetComponent<Player>();
 
-        swordScript = sword.GetComponent<EnemySword>();
+			swordScript = sword.GetComponent<EnemySword>();
 
-        playerStats = FindObjectOfType<PlayerStats>();
-    }
+			playerStats = FindObjectOfType<PlayerStats>();
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        float distance = Vector3.Distance(target.position, transform.position);
-        if(distance <= lookRadius)
-        {
-			if(canMove == true)
+		// Update is called once per frame
+		void Update()
+		{
+			float distance = Vector3.Distance(target.position, transform.position);
+			if (distance <= lookRadius)
 			{
-				agent.SetDestination(target.position);
-
-				if (distance <= agent.stoppingDistance)
+				if (canMove == true)
 				{
-					canDamage = true;
+					agent.SetDestination(target.position);
 
-					FaceTarget();
+					if (distance <= agent.stoppingDistance)
+					{
+						canDamage = true;
 
-					animator.SetBool("Attack", true);
-				}
-				else
-				{
-					animator.SetBool("Attack", false);
-					canDamage = false;
+						FaceTarget();
+
+						animator.SetBool("Attack", true);
+					}
+					else
+					{
+						animator.SetBool("Attack", false);
+						canDamage = false;
+					}
 				}
 			}
-        }
 
-        if(playerScript.enabled == false)
-        {
-            animator.SetBool("Attack", false);
-        }
+			if (playerScript.enabled == false)
+			{
+				animator.SetBool("Attack", false);
+			}
 
-        animSpeedPercent = agent.velocity.magnitude / agent.speed;
+			animSpeedPercent = agent.velocity.magnitude / agent.speed;
 
-        animator.SetFloat("speedPercent", animSpeedPercent, 0.5f, Time.deltaTime);
+			animator.SetFloat("speedPercent", animSpeedPercent, 0.5f, Time.deltaTime);
 
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Impact"))
-        {
-            animator.SetBool("Impact", false);
-        }
+			if (animator.GetCurrentAnimatorStateInfo(0).IsName("Impact"))
+			{
+				animator.SetBool("Impact", false);
+			}
 
-		if (animator.GetCurrentAnimatorStateInfo(0).IsName("KnockDown") || animator.GetCurrentAnimatorStateInfo(0).IsName("GetUp"))
-		{
-			canMove = false;
+			if (animator.GetCurrentAnimatorStateInfo(0).IsName("KnockDown") || animator.GetCurrentAnimatorStateInfo(0).IsName("GetUp"))
+			{
+				canMove = false;
+			}
+			else
+			{
+				canMove = true;
+			}
 		}
-		else
+
+		void FaceTarget()
 		{
-			canMove = true;
+			Vector3 direction = (target.position - transform.position).normalized;
+			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+			transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+		}
+
+		void OnDrawGizmosSelected()
+		{
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere(transform.position, lookRadius);
+		}
+
+
+		public void AttackEnd1()
+		{
+			if (canDamage == true)
+			{
+				playerScript.DoHit();
+				if (playerScript.isBlocking == false)
+				{
+					playerStats.currentHealth -= 5;
+				}
+				else if (playerScript.isBlocking == true)
+				{
+					animator.SetBool("Impact", true);
+				}
+			}
+		}
+
+		public void AttackEnd2()
+		{
+			if (canDamage == true)
+			{
+				playerScript.DoHit();
+				if (playerScript.isBlocking == false)
+				{
+					playerStats.currentHealth -= 5;
+				}
+				else if (playerScript.isBlocking == true)
+				{
+					animator.SetBool("Impact", true);
+				}
+			}
 		}
 	}
-
-	void FaceTarget()
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, lookRadius);
-    }
-
-
-    public void AttackEnd1()
-    {
-        if(canDamage == true)
-        {
-            playerScript.DoHit();
-            if(playerScript.isBlocking == false)
-            {
-                playerStats.currentHealth -= 5;
-            }
-            else if(playerScript.isBlocking == true)
-            {
-                animator.SetBool("Impact", true);
-            }
-        }
-    }
-
-    public void AttackEnd2()
-    {
-        if (canDamage == true)
-        {
-            playerScript.DoHit();
-            if (playerScript.isBlocking == false)
-            {
-                playerStats.currentHealth -= 5;
-            }
-            else if (playerScript.isBlocking == true)
-            {
-                animator.SetBool("Impact", true);
-            }
-        }
-    }
 }
+

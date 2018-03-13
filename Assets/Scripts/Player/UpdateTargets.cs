@@ -2,33 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateTargets : MonoBehaviour
- {
-	GameObject player;
-	Player playerScript;
-
-	void Start () 
+namespace S019745F
+{
+	public class UpdateTargets : MonoBehaviour
 	{
-		player = PlayerManager.instance.player;
-		playerScript = player.GetComponent<Player>();
-	}
+		GameObject player;
+		Player playerScript;
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if(other.tag == "Enemy")
+		void Start()
 		{
-			GameObject enemy = other.gameObject;
-			if(!playerScript.Enemies.Contains(enemy.transform))
+			player = PlayerManager.instance.player;
+			playerScript = player.GetComponent<Player>();
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.tag == "Enemy")
 			{
-				playerScript.Enemies.Add(enemy.transform);
+				GameObject enemy = other.gameObject;
+				if (!playerScript.Enemies.Contains(enemy.transform))
+				{
+					playerScript.Enemies.Add(enemy.transform);
+				}
+			}
+		}
+		private void OnTriggerExit(Collider other)
+		{
+			if (playerScript.Enemies.Contains(other.transform))
+			{
+				playerScript.Enemies.Remove(other.transform);
 			}
 		}
 	}
-	private void OnTriggerExit(Collider other)
-	{
-		if(playerScript.Enemies.Contains(other.transform))
-		{
-			playerScript.Enemies.Remove(other.transform);
-		}
-	}
 }
+
