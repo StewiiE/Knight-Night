@@ -14,6 +14,7 @@ namespace S019745F
 		public int currentExp;
 		public int expPoints;
 		public int[] toLevelUp;
+		public int xpDiff;
 
 		[Header("Stats")]
 		public float currentHealth;
@@ -94,6 +95,8 @@ namespace S019745F
 			{
 				currentMana += regenRate * Time.deltaTime;
 			}
+
+		//	xpDiff = toLevelUp[currentLevel] - currentExp;
 		}
 
 		public void AddExperience(int experienceToAdd)

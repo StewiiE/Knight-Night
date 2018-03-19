@@ -14,6 +14,8 @@ namespace S019745F
 		public Text healthText;
 		public Image healthbar;
 		public Image manaBar;
+		public Slider xpBar;
+		public Text xpText;
 
 		private static bool UIExists;
 
@@ -54,11 +56,16 @@ namespace S019745F
 			healthText.text = "HP: " + playerStats.currentHealth.ToString("F0") + "/" + playerStats.maxHealth.ToString("F0");
 			healthbar.fillAmount = playerStats.currentHealth / 100.0f;
 			manaBar.fillAmount = playerStats.currentMana / 100.0f;
+			xpBar.maxValue = playerStats.toLevelUp[playerStats.currentLevel];
+			xpBar.value = playerStats.currentExp;
+			xpText.text = "XP: " + playerStats.currentExp + "/" + playerStats.toLevelUp[playerStats.currentLevel];
 
 			if (Input.GetKeyDown(KeyCode.Escape))
 			{
 				//  PausePanel();
 			}
+
+
 		}
 
 		public void PausePanel()
