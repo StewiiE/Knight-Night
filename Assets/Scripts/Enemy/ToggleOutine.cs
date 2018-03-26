@@ -10,22 +10,46 @@ public class ToggleOutine : MonoBehaviour
 	public GameObject outlineShieldGO;
 	public GameObject outlineSwordGO;
 	public bool showOutline = false;
-	
-	void Update ()
+
+	void Update()
 	{
-		if(showOutline == true)
+		if (showOutline == true)
 		{
-			outlineMainGO.GetComponent<Outline>().enabled = true;
-			outlineHeadGO.GetComponent<Outline>().enabled = true;
-			outlineShieldGO.GetComponent<Outline>().enabled = true;
-			outlineSwordGO.GetComponent<Outline>().enabled = true;
+			if (outlineMainGO != null)
+			{
+				outlineMainGO.GetComponent<Outline>().enabled = true;
+			}
+			if (outlineHeadGO != null)
+			{
+				outlineHeadGO.GetComponent<Outline>().enabled = true;
+			}
+			if (outlineShieldGO != null)
+			{
+				outlineShieldGO.GetComponent<Outline>().enabled = true;
+			}
+			if (outlineSwordGO != null)
+			{
+				outlineSwordGO.GetComponent<Outline>().enabled = true;
+			}
 		}
 		else
 		{
-			outlineMainGO.GetComponent<Outline>().enabled = false;
-			outlineHeadGO.GetComponent<Outline>().enabled = false;
-			outlineShieldGO.GetComponent<Outline>().enabled = false;
-			outlineSwordGO.GetComponent<Outline>().enabled = false;
+			if (outlineMainGO != null)
+			{
+				outlineMainGO.GetComponent<Outline>().enabled = false;
+			}
+			if (outlineHeadGO != null)
+			{
+				outlineHeadGO.GetComponent<Outline>().enabled = false;
+			}
+			if (outlineShieldGO != null)
+			{
+				outlineShieldGO.GetComponent<Outline>().enabled = false;
+			}
+			if (outlineSwordGO != null)
+			{
+				outlineSwordGO.GetComponent<Outline>().enabled = false;
+			}
 		}
 	}
 }

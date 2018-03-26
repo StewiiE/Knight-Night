@@ -59,13 +59,6 @@ namespace S019745F
 			xpBar.maxValue = playerStats.toLevelUp[playerStats.currentLevel];
 			xpBar.value = playerStats.currentExp;
 			xpText.text = "XP: " + playerStats.currentExp + "/" + playerStats.toLevelUp[playerStats.currentLevel];
-
-			if (Input.GetKeyDown(KeyCode.Escape))
-			{
-				//  PausePanel();
-			}
-
-
 		}
 
 		public void PausePanel()

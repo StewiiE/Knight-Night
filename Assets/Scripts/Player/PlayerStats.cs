@@ -14,7 +14,6 @@ namespace S019745F
 		public int currentExp;
 		public int expPoints;
 		public int[] toLevelUp;
-		public int xpDiff;
 
 		[Header("Stats")]
 		public float currentHealth;
@@ -25,8 +24,13 @@ namespace S019745F
 
 		Player playerScript;
 		Abilities abilitiesScript;
-
 		Animator playerAnimator;
+
+		int strength;
+		int speed;
+		int endurance;
+		int vitality;
+		int perception;
 
 		[Header("Particles")]
 		public GameObject levelUpPrefab;
@@ -45,6 +49,7 @@ namespace S019745F
 			{
 				currentLevel = 1;
 			}
+
 			maxHealth = 100.0f;
 			maxMana = 100.0f;
 			regenRate = 1.0f;
@@ -53,6 +58,13 @@ namespace S019745F
 			playerScript = player.GetComponent<Player>();
 			playerAnimator = player.GetComponent<Animator>();
 			abilitiesScript = player.GetComponent<Abilities>();
+
+			// Attributes setup
+			strength = Attributes[0].amount;
+			speed = Attributes[1].amount;
+			endurance = Attributes[2].amount;
+			vitality = Attributes[3].amount;
+			perception = Attributes[4].amount;
 		}
 
 		// Update is called once per frame
@@ -95,8 +107,6 @@ namespace S019745F
 			{
 				currentMana += regenRate * Time.deltaTime;
 			}
-
-		//	xpDiff = toLevelUp[currentLevel] - currentExp;
 		}
 
 		public void AddExperience(int experienceToAdd)

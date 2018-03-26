@@ -26,8 +26,8 @@ namespace S019745F
 			{
 				if (player.animIsAttacking == true)
 				{
-					Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
-					enemyScript.TakeDamage(damage);
+					IDamageable enemy = other.GetComponent<IDamageable>();
+					enemy.TakeDamage(damage);
 					bodyImpactGO.GetComponent<AudioSource>().Play();
 				}
 			}

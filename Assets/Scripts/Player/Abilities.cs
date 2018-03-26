@@ -27,7 +27,7 @@ namespace S019745F
 
 						if (rb.tag == "Enemy")
 						{
-							Enemy enemyScript = rb.gameObject.GetComponent<Enemy>();
+							Enemy_Paladin enemyScript = rb.gameObject.GetComponent<Enemy_Paladin>();
 							enemyScript.TakeDamage(100f);
 						}
 					}

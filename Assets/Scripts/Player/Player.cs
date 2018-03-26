@@ -424,7 +424,6 @@ namespace S019745F
 				yield return new WaitForSeconds(0.2f);
 				lockedOn = true;
 			}
-			Debug.Log(lockedOn);
 		}
 
 		IEnumerator SwitchTargetToggle()
@@ -443,8 +442,6 @@ namespace S019745F
 				curTarget = 0;
 				switchCoroutineRunning = false;
 			}
-			Debug.Log(curTarget);
-			Debug.Log("Enemy count: " + Enemies.Count);
 		}
 	}
 }
