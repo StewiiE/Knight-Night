@@ -54,7 +54,6 @@ namespace S019745F
 
 		public void GetSkill()
 		{
-			Debug.Log("Pressed");
 			if(skill.GetSkill(playerStats))
 			{
 				TurnOnSkillIcon();

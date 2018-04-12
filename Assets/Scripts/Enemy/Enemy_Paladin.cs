@@ -35,7 +35,7 @@ namespace S019745F
 			player = PlayerManager.instance.player;
 			playerScript = player.GetComponent<Player>();
 
-			Enemy_Paladin_Controller enemy_Paladin_Controller = GetComponent<Enemy_Paladin_Controller>();
+			enemy_Paladin_Controller = GetComponent<Enemy_Paladin_Controller>();
 		}
 
 		// Update is called once per frame

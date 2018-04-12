@@ -26,6 +26,8 @@ namespace S019745F
 		Abilities abilitiesScript;
 		Animator playerAnimator;
 
+		private float animSpeedMultiplier;
+
 		int strength;
 		int speed;
 		int endurance;
@@ -58,6 +60,8 @@ namespace S019745F
 			playerScript = player.GetComponent<Player>();
 			playerAnimator = player.GetComponent<Animator>();
 			abilitiesScript = player.GetComponent<Abilities>();
+
+			animSpeedMultiplier = playerAnimator.GetFloat("movementMultiplier");
 
 			// Attributes setup
 			strength = Attributes[0].amount;
@@ -107,6 +111,9 @@ namespace S019745F
 			{
 				currentMana += regenRate * Time.deltaTime;
 			}
+
+			// Movement Multiplier
+			playerAnimator.SetFloat("movementMultiplier", 1 + (speed / 100.0f));
 		}
 
 		public void AddExperience(int experienceToAdd)

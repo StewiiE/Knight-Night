@@ -90,15 +90,14 @@ namespace S019745F
 
 		void DrawArrow()
 		{
-			Debug.Log("Draw Arrow");
 			arrow.SetActive(true);
 		}
 
 		void FireArrow()
 		{
-			Debug.Log("Fire Arrow");
 			arrow.SetActive(false);
 
+			// Spawn Arrow
 			GameObject go = Instantiate(arrowProjectile, arrow.transform.position, arrow.transform.rotation) as GameObject;
 		}
 	}
