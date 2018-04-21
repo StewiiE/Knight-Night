@@ -80,6 +80,8 @@ namespace S019745F
 
 				// Do level up stuff
 
+				playerAnimator.Play("LevelUp");
+
 				GameObject particle1 = Instantiate(levelUpPrefab, player.transform.position, Quaternion.identity) as GameObject;
 				GameObject particle2 = Instantiate(levelUpPrefab2, player.transform.position, Quaternion.identity) as GameObject;
 
@@ -87,8 +89,6 @@ namespace S019745F
 				particle2.transform.parent = player.transform;
 
 				abilitiesScript.Explode();
-
-				playerAnimator.Play("LevelUp", 0, 0.0f);
 			}
 
 			if (currentHealth <= 0)

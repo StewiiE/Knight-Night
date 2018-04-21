@@ -19,6 +19,8 @@ namespace S019745F
 		GameObject player;
 		Player playerScript;
 
+		bool isDead = false;
+
 		void Start()
 		{
 			currentHealth = 100f;
@@ -37,7 +39,11 @@ namespace S019745F
 		{
 			if (currentHealth <= 0)
 			{
-				Death();
+				if(!isDead)
+				{
+					Death();
+					isDead = true;
+				}
 			}
 		}
 
@@ -45,16 +51,29 @@ namespace S019745F
 		{
 			currentHealth = currentHealth -= damage;
 			controller.canMove = false;
+			animator.Play("standing react small from headshot");
 		}
 
 		void Death()
 		{
-			Destroy(this.gameObject);
+			controller.enabled = false;
+
+			rb.freezeRotation = true;
+
+			animator.Play("standing death backward 01");
 
 			if (playerScript.isLevelingUp == false)
 			{
 				thePlayerStats.AddExperience(expToGive);
 			}
+
+			StartCoroutine(waitToDestroy());
+		}
+
+		IEnumerator waitToDestroy()
+		{
+			yield return new WaitForSeconds(5f);
+			Destroy(this.gameObject);
 		}
 	}
 }

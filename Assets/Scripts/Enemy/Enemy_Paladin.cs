@@ -22,6 +22,8 @@ namespace S019745F
 		GameObject player;
 		Player playerScript;
 
+		bool isDead = false;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -43,7 +45,11 @@ namespace S019745F
 		{
 			if (currentHealth <= 0)
 			{
-				Death();
+				if(!isDead)
+				{
+					Death();
+					isDead = true;
+				}
 			}
 		}
 
@@ -52,6 +58,7 @@ namespace S019745F
 			currentHealth = currentHealth -= damage;
 			enemy_Paladin_Controller.canMove = false;
 			animator.Play("KnockDown");
+			StartCoroutine(InvincibleTime());
 		}
 
 		public void Death()
@@ -99,6 +106,13 @@ namespace S019745F
 					rb.AddRelativeForce(-ragdollMaster.transform.forward * 4000);
 				}
 			}
+		}
+
+		IEnumerator InvincibleTime()
+		{
+			this.GetComponent<CapsuleCollider>().enabled = false;
+			yield return new WaitForSeconds(4f);
+			this.GetComponent<CapsuleCollider>().enabled = true;
 		}
 	}
 }
