@@ -8,16 +8,18 @@ namespace S019745F
 	public class Footsteps : MonoBehaviour
 	{
 		Player player;
+		Animator anim;
 
 
 		private void Start()
 		{
 			player = GetComponent<Player>();
+			anim = GetComponent<Animator>();
 		}
 
 		public void Step()
 		{
-			if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+			if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || anim.GetCurrentAnimatorStateInfo(0).IsTag("SprintAttack"))
 			{
 				GetComponent<AudioSource>().Play();
 			}

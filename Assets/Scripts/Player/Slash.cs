@@ -10,6 +10,8 @@ namespace S019745F
 		Player player;
 		TrailRenderer weaponTrail;
 
+		float waitTime = 0.6f;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -35,7 +37,7 @@ namespace S019745F
 		{
 			if (player.isSlashing == true)
 			{
-				yield return new WaitForSeconds(0.6f);
+				yield return new WaitForSeconds(waitTime);
 				player.isSlashing = false;
 			}
 		}

@@ -26,6 +26,9 @@ namespace S019745F
 		float animSpeedPercent;
 		public bool canMove = true;
 
+		public GameObject audioHolder;
+		private AudioSource hitPlayer;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -39,6 +42,8 @@ namespace S019745F
 			swordScript = sword.GetComponent<Enemy_Paladin_Sword>();
 
 			playerStats = FindObjectOfType<PlayerStats>();
+
+			hitPlayer = audioHolder.GetComponent<AudioSource>();
 		}
 
 		// Update is called once per frame
@@ -108,10 +113,11 @@ namespace S019745F
 		{
 			if (canDamage == true)
 			{
-				playerScript.DoHit();
+				//playerScript.DoHit();
 				if (playerScript.isBlocking == false)
 				{
 					playerStats.currentHealth -= 5;
+					hitPlayer.Play();
 				}
 				else if (playerScript.isBlocking == true)
 				{
@@ -124,10 +130,11 @@ namespace S019745F
 		{
 			if (canDamage == true)
 			{
-				playerScript.DoHit();
+				//playerScript.DoHit();
 				if (playerScript.isBlocking == false)
 				{
 					playerStats.currentHealth -= 5;
+					hitPlayer.Play();
 				}
 				else if (playerScript.isBlocking == true)
 				{

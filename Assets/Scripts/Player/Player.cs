@@ -127,6 +127,11 @@ namespace S019745F
 								Running();
 								Turning();
 
+								if(anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+								{
+									Debug.Log("Just attacked");
+								}
+
 							}
 						}
 					}
@@ -191,7 +196,7 @@ namespace S019745F
 
 			#region is Attacking
 
-			if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+			if (anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
 			{
 				attack = false;
 				isAttacking = true;
@@ -287,7 +292,12 @@ namespace S019745F
 		public void Attack()
 		{
 			if (!isAttacking)
+			{
+				int randomInt = Random.Range(0, 4);
+				anim.SetFloat("AttackInt", randomInt);
+				Debug.Log(randomInt);
 				StartCoroutine(AttackAnim());
+			}
 		}
 
 		// Setting attack animations
@@ -335,16 +345,12 @@ namespace S019745F
 
 		public void EndSlash()
 		{
-			//   isSlashing = false;
+			isSlashing = false;
 		}
 
 		public void SwingAudio()
 		{
 			maulSwingGO.GetComponent<AudioSource>().Play();
-		}
-
-		private void OnTriggerEnter(Collider other)
-		{
 		}
 
 		#endregion
