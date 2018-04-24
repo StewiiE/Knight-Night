@@ -102,14 +102,17 @@ namespace S019745F
 				currentHealth = maxHealth;
 			}
 
-			if (currentHealth < maxHealth)
+			if(playerScript.enabled == true)
 			{
-				currentHealth += regenRate * Time.deltaTime;
-			}
+				if (currentHealth < maxHealth)
+				{
+					currentHealth += regenRate * Time.deltaTime;
+				}
 
-			if (currentMana < maxMana)
-			{
-				currentMana += regenRate * Time.deltaTime;
+				if (currentMana < maxMana)
+				{
+					currentMana += regenRate * Time.deltaTime;
+				}
 			}
 
 			// Movement Multiplier

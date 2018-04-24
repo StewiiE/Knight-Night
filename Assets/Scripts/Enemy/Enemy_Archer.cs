@@ -21,6 +21,9 @@ namespace S019745F
 
 		bool isDead = false;
 
+		[SerializeField]
+		Arena1Spawner spawnerRef;
+
 		void Start()
 		{
 			currentHealth = 100f;
@@ -33,6 +36,8 @@ namespace S019745F
 
 			player = PlayerManager.instance.player;
 			playerScript = player.GetComponent<Player>();
+
+			spawnerRef = FindObjectOfType<Arena1Spawner>();
 		}
 
 		void Update()
@@ -65,6 +70,11 @@ namespace S019745F
 			if (playerScript.isLevelingUp == false)
 			{
 				thePlayerStats.AddExperience(expToGive);
+			}
+
+			if (spawnerRef.enemyList.Contains(this.gameObject))
+			{
+				spawnerRef.RemoveEnemyFromList(this.gameObject);
 			}
 
 			StartCoroutine(waitToDestroy());

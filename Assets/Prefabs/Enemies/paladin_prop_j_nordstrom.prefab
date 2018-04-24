@@ -2212,7 +2212,7 @@ Transform:
   m_GameObject: {fileID: 1368332698961496}
   m_LocalRotation: {x: -0, y: -0.91265595, z: 0, w: -0.40872863}
   m_LocalPosition: {x: 330.0202, y: 171.9505, z: 752.40344}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 2.75, y: 2.75, z: 2.75}
   m_Children:
   - {fileID: 4148281795269550}
   - {fileID: 4267491759384144}
@@ -2509,6 +2509,7 @@ MonoBehaviour:
   expToGive: 100
   ragdollPrefab: {fileID: 1690187240096204, guid: ad8a2bbd4ffa0474bae8640086ae2ce8,
     type: 2}
+  spawnerRef: {fileID: 0}
 --- !u!114 &114065389990043812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2581,7 +2582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9265c36cefbdb654ab9bae11ed0fb65b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 19.04
+  lookRadius: 100
   sword: {fileID: 1586804821343860}
   canMove: 1
   audioHolder: {fileID: 1955236289083052}
@@ -2593,8 +2594,8 @@ CapsuleCollider:
   m_GameObject: {fileID: 1240130510742970}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.7417111
+  m_Enabled: 0
+  m_Radius: 0.47
   m_Height: 1.757731
   m_Direction: 1
   m_Center: {x: 0.06865582, y: 0.75461346, z: 0.09707528}
@@ -2863,7 +2864,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.12
-  m_Speed: 3
+  m_Speed: 3.5
   m_Acceleration: 40
   avoidancePriority: 1
   m_AngularSpeed: 150

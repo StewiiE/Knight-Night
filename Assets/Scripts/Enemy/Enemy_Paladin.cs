@@ -24,6 +24,9 @@ namespace S019745F
 
 		bool isDead = false;
 
+		[SerializeField]
+		Arena1Spawner spawnerRef;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -38,6 +41,8 @@ namespace S019745F
 			playerScript = player.GetComponent<Player>();
 
 			enemy_Paladin_Controller = GetComponent<Enemy_Paladin_Controller>();
+
+			spawnerRef = FindObjectOfType<Arena1Spawner>();
 		}
 
 		// Update is called once per frame
@@ -58,21 +63,30 @@ namespace S019745F
 			currentHealth = currentHealth -= damage;
 			enemy_Paladin_Controller.canMove = false;
 			animator.Play("KnockDown");
+			//rb.freezeRotation = true;
+			rb.constraints = RigidbodyConstraints.FreezeAll;
 			StartCoroutine(InvincibleTime());
 		}
 
 		public void Death()
 		{
+			rb.constraints = RigidbodyConstraints.None;
+
 			RagdollDeath();
 
 			playerScript.Enemies.Remove(this.transform);
 
-			Destroy(this.gameObject);
+			if(spawnerRef.enemyList.Contains(this.gameObject))
+			{
+				spawnerRef.RemoveEnemyFromList(this.gameObject);
+			}
 
 			if (playerScript.isLevelingUp == false)
 			{
 				thePlayerStats.AddExperience(expToGive);
 			}
+
+			Destroy(this.gameObject);
 		}
 
 		public void RagdollDeath()
@@ -113,6 +127,7 @@ namespace S019745F
 			this.GetComponent<CapsuleCollider>().enabled = false;
 			yield return new WaitForSeconds(4f);
 			this.GetComponent<CapsuleCollider>().enabled = true;
+			rb.constraints = RigidbodyConstraints.None;
 		}
 	}
 }
