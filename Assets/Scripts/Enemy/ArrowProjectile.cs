@@ -16,6 +16,8 @@ namespace S019745F
 		public float speed = 1f;
 		public float range = 2f;
 
+		AudioSource hitSound;
+
 		void Start()
 		{
 			rb = GetComponent<Rigidbody>();
@@ -23,30 +25,10 @@ namespace S019745F
 			playerStats = FindObjectOfType<PlayerStats>();
 			player = PlayerManager.instance.player;
 			playerScript = player.GetComponent<Player>();
+			hitSound = GetComponent<AudioSource>();
 
 			rb.AddForce(transform.forward * speed, ForceMode.Impulse);
 		}
-
-		//void FixedUpdate()
-		//{
-		//	RaycastHit hit;
-
-		//	if (Physics.Raycast(transform.position, transform.forward, out hit, range))
-		//	{
-		//		if (hit.collider.GetType() != typeof(SphereCollider))
-		//		{
-		//			rb.isKinematic = true;
-		//			transform.parent = hit.collider.transform;
-		//			this.enabled = false;
-		//			trail.SetActive(false);
-		//			if (hit.collider.tag == "Player")
-		//			{
-						
-		//			}
-		//			Debug.Log(hit.collider);
-		//		}
-		//	}
-		//}
 
 		private void OnCollisionEnter(Collision other)
 		{
@@ -65,10 +47,12 @@ namespace S019745F
 					playerScript.DoHit();
 					if (playerScript.isBlocking == false)
 					{
+						hitSound.Play();
 						playerStats.currentHealth -= 10;
 					}
 					else if (playerScript.isBlocking == true)
 					{
+						// Do deflection
 					}
 				}
 				else

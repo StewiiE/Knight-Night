@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Footstep
+  - Archer
+  - Paladin
+  - Skeleton
   layers:
   - Default
   - TransparentFX

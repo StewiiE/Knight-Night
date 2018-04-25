@@ -15,7 +15,7 @@ public class Arena1Spawner : MonoBehaviour
 		public float rate;
 	}
 	public Wave[] waves;
-	private int nextWave = 0;
+	public int nextWave = 0;
 
 	public Transform[] spawnPoints;
 
@@ -26,11 +26,15 @@ public class Arena1Spawner : MonoBehaviour
 
 	public SpawnState state = SpawnState.COUNTING;
 
-	public List<GameObject> enemyList;
-
 	public bool startWave = false;
 
 	int currentLevel = 1;
+
+	public bool canShowStats = false;
+
+	public int enemiesAlive = 0;
+
+	public GameObject exitGate;
 
 	void Start()
 	{
@@ -82,9 +86,11 @@ public class Arena1Spawner : MonoBehaviour
 
 		if (nextWave + 1 > waves.Length - 1)
 		{
-			nextWave = 0;
+			exitGate.SetActive(false);
 
 			// Waves Complete!
+
+			canShowStats = false;
 		}
 		else
 		{
@@ -98,7 +104,7 @@ public class Arena1Spawner : MonoBehaviour
 		if (searchCountdown <= 0f)
 		{
 			searchCountdown = 1f;
-			if (enemyList.Count == 0)
+			if (enemiesAlive == 0)
 			{
 				return false;
 			}
@@ -125,11 +131,6 @@ public class Arena1Spawner : MonoBehaviour
 	{
 		Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 		Instantiate(_enemy, spawnPoint.position, Quaternion.identity);
-		enemyList.Add(_enemy);
-	}
-
-	public void RemoveEnemyFromList(GameObject enemy)
-	{
-		enemyList.Remove(enemy);
+		enemiesAlive++;
 	}
 }

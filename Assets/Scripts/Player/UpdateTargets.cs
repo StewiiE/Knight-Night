@@ -17,7 +17,23 @@ namespace S019745F
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.tag == "Enemy")
+			if (other.gameObject.tag == "Paladin")
+			{
+				GameObject enemy = other.gameObject;
+				if (!playerScript.Enemies.Contains(enemy.transform))
+				{
+					playerScript.Enemies.Add(enemy.transform);
+				}
+			}
+			else if (other.gameObject.tag == "Archer")
+			{
+				GameObject enemy = other.gameObject;
+				if (!playerScript.Enemies.Contains(enemy.transform))
+				{
+					playerScript.Enemies.Add(enemy.transform);
+				}
+			}
+			else if (other.gameObject.tag == "Skeleton")
 			{
 				GameObject enemy = other.gameObject;
 				if (!playerScript.Enemies.Contains(enemy.transform))

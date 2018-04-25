@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace S019745F
 {
-	public class Enemy_Archer : MonoBehaviour, IDamageable
+	public class Enemy_Skeleton : MonoBehaviour, IDamageable
 	{
 		public float currentHealth;
 		float maxHealth = 100f;
@@ -14,7 +14,7 @@ namespace S019745F
 
 		Rigidbody rb;
 		Animator animator;
-		Enemy_Archer_Controller controller;
+		Skeleton_Controller skeleton_Controller;
 
 		GameObject player;
 		Player playerScript;
@@ -24,27 +24,32 @@ namespace S019745F
 		[SerializeField]
 		Arena1Spawner spawnerRef;
 
+		public GameObject skeletonPieces;
+
+		// Use this for initialization
 		void Start()
 		{
-			currentHealth = 50f;
+			currentHealth = 25f;
 
 			thePlayerStats = FindObjectOfType<PlayerStats>();
 
 			rb = this.gameObject.GetComponent<Rigidbody>();
 			animator = GetComponent<Animator>();
-			controller = GetComponent<Enemy_Archer_Controller>();
 
 			player = PlayerManager.instance.player;
 			playerScript = player.GetComponent<Player>();
 
+			skeleton_Controller = GetComponent<Skeleton_Controller>();
+
 			spawnerRef = FindObjectOfType<Arena1Spawner>();
 		}
 
+		// Update is called once per frame
 		void Update()
 		{
 			if (currentHealth <= 0)
 			{
-				if(!isDead)
+				if (!isDead)
 				{
 					Death();
 					isDead = true;
@@ -54,35 +59,23 @@ namespace S019745F
 
 		public void TakeDamage(float damage)
 		{
-			if (isDead == false)
-			{
-				currentHealth = currentHealth -= damage;
-				controller.canMove = false;
-				animator.Play("standing react small from headshot");
-			}
+			Debug.Log("Take Damage");
+			currentHealth = currentHealth -= damage;
 		}
 
-		void Death()
+		public void Death()
 		{
-			controller.enabled = false;
+			playerScript.Enemies.Remove(this.transform);
 
-			rb.freezeRotation = true;
-
-			animator.Play("Death");
+			spawnerRef.enemiesAlive--;
 
 			if (playerScript.isLevelingUp == false)
 			{
 				thePlayerStats.AddExperience(expToGive);
 			}
 
-			spawnerRef.enemiesAlive--;
+			GameObject SkeletonPieces = Instantiate(skeletonPieces, transform.root.transform.position, Quaternion.identity) as GameObject;
 
-			StartCoroutine(waitToDestroy());
-		}
-
-		IEnumerator waitToDestroy()
-		{
-			yield return new WaitForSeconds(5f);
 			Destroy(this.gameObject);
 		}
 	}

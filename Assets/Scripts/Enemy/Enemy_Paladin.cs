@@ -76,10 +76,7 @@ namespace S019745F
 
 			playerScript.Enemies.Remove(this.transform);
 
-			if(spawnerRef.enemyList.Contains(this.gameObject))
-			{
-				spawnerRef.RemoveEnemyFromList(this.gameObject);
-			}
+			spawnerRef.enemiesAlive--;
 
 			if (playerScript.isLevelingUp == false)
 			{

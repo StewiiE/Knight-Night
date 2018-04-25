@@ -244,7 +244,7 @@ namespace S019745F
 							lockedOn = false;
 							// rb.AddRelativeForce(Vector3.forward * 3000);
 							anim.Play("Roll", 0, 0.0f);
-							playerStats.currentMana -= 25;
+							playerStats.currentMana -= 15;
 						}
 					}
 				}
@@ -252,8 +252,9 @@ namespace S019745F
 			#endregion
 
 			#region Block
-			if (Input.GetKey(KeyCode.Q))
+			if (Input.GetButton("Block"))
 			{
+				Debug.Log("Block");
 				anim.SetBool("isBlocking", true);
 				isBlocking = true;
 			}
@@ -306,7 +307,7 @@ namespace S019745F
 			if (attack == true)
 			{
 				anim.SetBool("isAttacking", true);
-				yield return new WaitForSeconds(0.1f);
+				yield return new WaitForSeconds(0.01f);
 				anim.SetBool("isAttacking", false);
 			}
 		}
