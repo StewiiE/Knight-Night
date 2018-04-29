@@ -25,7 +25,7 @@ namespace S019745F
 		bool isDead = false;
 
 		[SerializeField]
-		Arena1Spawner spawnerRef;
+		GameManager gameManager;
 
 		// Use this for initialization
 		void Start()
@@ -42,7 +42,7 @@ namespace S019745F
 
 			enemy_Paladin_Controller = GetComponent<Enemy_Paladin_Controller>();
 
-			spawnerRef = FindObjectOfType<Arena1Spawner>();
+			gameManager = FindObjectOfType<GameManager>();
 		}
 
 		// Update is called once per frame
@@ -76,12 +76,14 @@ namespace S019745F
 
 			playerScript.Enemies.Remove(this.transform);
 
-			spawnerRef.enemiesAlive--;
+			gameManager.enemiesRemaining--;
 
 			if (playerScript.isLevelingUp == false)
 			{
 				thePlayerStats.AddExperience(expToGive);
 			}
+
+			playerScript.kills++;
 
 			Destroy(this.gameObject);
 		}

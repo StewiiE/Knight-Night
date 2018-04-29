@@ -8,6 +8,13 @@ namespace S019745F
 	{
 		public GameObject player;
 		public PlayerStats playerStats;
+		public CanvasGroup deathPanel;
+
+		[Header("HUD")]
+	//	public List<GameObject> HUDList = new List<GameObject>();
+
+		[Header("Respawn HUD")]
+	//	public List<GameObject> RespawnHUDList = new List<GameObject>();
 
 		[Header("Levels")]
 		public int currentLevel;
@@ -43,6 +50,8 @@ namespace S019745F
 
 		[Header("Player Skills Enabled")]
 		public List<Skills> PlayerSkills = new List<Skills>();
+
+		bool showDeathScreen = false;
 
 		// Use this for initialization
 		void Start()
@@ -96,27 +105,49 @@ namespace S019745F
 				playerScript.enabled = false;
 				Death();
 			}
+			else
+			{
+				/*foreach (GameObject item in RespawnHUDList)
+				{
+					item.SetActive(true);
+					Debug.Log("sartyr");
+				}
+
+				playerScript.enabled = true;
+
+				showDeathScreen = false;
+
+				deathPanel.alpha = 0f;
+				deathPanel.interactable = false;
+				deathPanel.blocksRaycasts = false;
+				Time.timeScale = 1f;
+				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked; */
+			}
 
 			if (currentHealth > maxHealth)
 			{
 				currentHealth = maxHealth;
 			}
 
-			if(playerScript.enabled == true)
+			if(player != null)
 			{
-				if (currentHealth < maxHealth)
+				if (playerScript.enabled == true)
 				{
-					currentHealth += regenRate * Time.deltaTime;
+					if (currentHealth < maxHealth)
+					{
+						currentHealth += regenRate * Time.deltaTime;
+					}
+
+					if (currentMana < maxMana)
+					{
+						currentMana += regenRate * Time.deltaTime;
+					}
 				}
 
-				if (currentMana < maxMana)
-				{
-					currentMana += regenRate * Time.deltaTime;
-				}
+				// Movement Multiplier
+				playerAnimator.SetFloat("movementMultiplier", 1 + (speed / 100.0f));
 			}
-
-			// Movement Multiplier
-			playerAnimator.SetFloat("movementMultiplier", 1 + (speed / 100.0f));
 		}
 
 		public void AddExperience(int experienceToAdd)
@@ -129,6 +160,30 @@ namespace S019745F
 		{
 			playerAnimator.SetBool("isDead", true);
 			playerAnimator.Play("Death");
+
+			/*foreach (GameObject item in HUDList)
+			{
+				item.SetActive(false);
+			} */
+
+			showDeathScreen = true;
+
+			StartCoroutine(WaitToShowPanel());
+		}
+
+		IEnumerator WaitToShowPanel()
+		{
+			yield return new WaitForSeconds(2.5f);
+
+			if(showDeathScreen == true)
+			{
+				deathPanel.alpha = 1f;
+				deathPanel.interactable = true;
+				deathPanel.blocksRaycasts = true;
+				Time.timeScale = 0f;
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
+			}
 		}
 	}
 }

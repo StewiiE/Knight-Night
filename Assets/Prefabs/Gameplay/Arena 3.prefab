@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1360356701225262}
+  m_IsPrefabParent: 1
+--- !u!1 &1360356701225262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4398985127871668}
+  - component: {fileID: 65456028800531154}
+  - component: {fileID: 114405806472726150}
+  - component: {fileID: 114341854059290314}
+  m_Layer: 0
+  m_Name: Arena 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &4398985127871668
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360356701225262}
+  m_LocalRotation: {x: -0, y: -0.61339736, z: -0, w: 0.7897745}
+  m_LocalPosition: {x: 450.02, y: 132.48, z: 409.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -75.671005, z: 0}
+--- !u!65 &65456028800531154
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360356701225262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 48.3, y: 36.6, z: 2.9}
+  m_Center: {x: 22.5, y: 15, z: 13.3}
+--- !u!114 &114341854059290314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360356701225262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f671907852322488b24484f34d847e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: 1
+    enemy: {fileID: 1970592907582856, guid: f63de91776d8b6c48b11a5b9d904aa99, type: 2}
+    amount: 5
+    rate: 3
+  - name: 2
+    enemy: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+    amount: 5
+    rate: 3
+  - name: 3
+    enemy: {fileID: 1349150361055734, guid: dca8e056b77d49c4aafe4dbcc2bab713, type: 2}
+    amount: 14
+    rate: 4
+  - name: 4
+    enemy: {fileID: 1970592907582856, guid: f63de91776d8b6c48b11a5b9d904aa99, type: 2}
+    amount: 7
+    rate: 5
+  - name: 5
+    enemy: {fileID: 1368332698961496, guid: 3b5fe80edbb4ae4439bfc8cf876fd14a, type: 2}
+    amount: 6
+    rate: 4
+  nextWave: 0
+  spawnPoints: []
+  timeBetweenWaves: 5
+  waveCountdown: 0
+  state: 2
+  startWave: 0
+  canShowStats: 0
+  exitGate: {fileID: 0}
+  wavesComplete: 0
+  arena3Manager: {fileID: 114405806472726150}
+  gameManager: {fileID: 0}
+--- !u!114 &114405806472726150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360356701225262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dfb66a21ef87d40b7a1ffb9b3356ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkEndWaves: 0
+  arenaPopup: {fileID: 0}
+  arena2Manager: {fileID: 0}
+  waveStats: {fileID: 0}
+  waveNumber: {fileID: 0}
+  waveCountdown: {fileID: 0}
+  enemyType: {fileID: 0}
+  enemiesRemaining: {fileID: 0}
+  arenaText: {fileID: 0}
+  gameManager: {fileID: 0}

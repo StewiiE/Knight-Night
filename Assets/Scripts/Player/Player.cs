@@ -47,6 +47,9 @@ namespace S019745F
 
 		bool gotHit = false;
 
+		public int kills = 0;
+		public int arenasCompleted = 0;
+
 		#region Anim Vars
 		// Animation Vars
 		[Header("Animation Vars")]
@@ -233,7 +236,7 @@ namespace S019745F
 			#endregion
 
 			#region Do Roll
-			if (Input.GetKeyDown(KeyCode.G))
+			if (Input.GetButtonDown("Roll"))
 			{
 				if (isRolling == false)
 				{
@@ -244,7 +247,7 @@ namespace S019745F
 							lockedOn = false;
 							// rb.AddRelativeForce(Vector3.forward * 3000);
 							anim.Play("Roll", 0, 0.0f);
-							playerStats.currentMana -= 15;
+							playerStats.currentMana -= 5;
 						}
 					}
 				}

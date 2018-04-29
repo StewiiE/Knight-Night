@@ -29,6 +29,14 @@ namespace S019745F
 		public GameObject audioHolder;
 		private AudioSource hitPlayer;
 
+		public GameObject blockHolder;
+		private AudioSource playerBlock;
+
+		public GameObject bloodEffect;
+		public GameObject sparksEffect;
+
+		public Transform effectsPos;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -44,6 +52,7 @@ namespace S019745F
 			playerStats = FindObjectOfType<PlayerStats>();
 
 			hitPlayer = audioHolder.GetComponent<AudioSource>();
+			playerBlock = blockHolder.GetComponent<AudioSource>();
 		}
 
 		// Update is called once per frame
@@ -118,10 +127,13 @@ namespace S019745F
 				{
 					playerStats.currentHealth -= 5;
 					hitPlayer.Play();
+					Instantiate(bloodEffect, effectsPos.transform.position, Quaternion.identity);
 				}
 				else if (playerScript.isBlocking == true)
 				{
 					animator.SetBool("Impact", true);
+					playerBlock.Play();
+					Instantiate(sparksEffect, effectsPos.transform.position, Quaternion.identity);
 				}
 			}
 		}
@@ -135,10 +147,12 @@ namespace S019745F
 				{
 					playerStats.currentHealth -= 5;
 					hitPlayer.Play();
+					Instantiate(bloodEffect, effectsPos.transform.position, Quaternion.identity);
 				}
 				else if (playerScript.isBlocking == true)
 				{
 					animator.SetBool("Impact", true);
+					Instantiate(sparksEffect, effectsPos.transform.position, Quaternion.identity);
 				}
 			}
 		}

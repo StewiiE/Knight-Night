@@ -30,15 +30,17 @@ namespace S019745F
 		// Use this for initialization
 		void Start()
 		{
-			if (!UIExists)
+			/*if (!UIExists)
 			{
+				Debug.Log("Dont destroy on load");
 				UIExists = true;
 				DontDestroyOnLoad(transform.gameObject);
 			}
 			else
 			{
+				Debug.Log("Destoy this");
 				Destroy(gameObject);
-			}
+			} */
 
 			playerStats = GetComponent<PlayerStats>();
 

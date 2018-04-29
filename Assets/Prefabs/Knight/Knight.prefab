@@ -1946,8 +1946,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1100442140630086}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 326.4183, y: 172.18913, z: 744.82855}
+  m_LocalRotation: {x: -0, y: -0.78415895, z: -0, w: 0.62056017}
+  m_LocalPosition: {x: 268.03, y: 171.5, z: 733.07}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4062583191469376}
@@ -1957,7 +1957,7 @@ Transform:
   - {fileID: 4860754625203320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -103.286, z: 0}
 --- !u!4 &4613979477672476
 Transform:
   m_ObjectHideFlags: 1
@@ -2973,7 +2973,8 @@ AudioSource:
   m_GameObject: {fileID: 1383165785509242}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: fdddb7f198d30d248b428a53760b07ae,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 378938214417a82439f9ce927c02dda2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.15
@@ -3222,6 +3223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
+  bloodEffect: {fileID: 1294348616409016, guid: f39989518206375429540e512f2dd406,
+    type: 2}
 --- !u!114 &114468953301168994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3243,6 +3246,8 @@ MonoBehaviour:
   speedSmoothTime: 0.1
   turnSmoothTime: 0.2
   damping: 100
+  kills: 0
+  arenasCompleted: 0
   animIsAttacking: 0
   isBlocking: 0
   isSlashing: 0

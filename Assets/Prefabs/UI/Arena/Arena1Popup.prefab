@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222005410224285172}
   - component: {fileID: 114549402896992030}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ArenaPopupText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Entered Arena
+  m_Text: Entered First Arena
 --- !u!114 &114733477183793674
 MonoBehaviour:
   m_ObjectHideFlags: 1

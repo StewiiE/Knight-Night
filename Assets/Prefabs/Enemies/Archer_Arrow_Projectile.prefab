@@ -63,6 +63,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1632436456219718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4688366165399400}
+  m_Layer: 0
+  m_Name: EffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4167174585598162
 Transform:
   m_ObjectHideFlags: 1
@@ -89,6 +104,19 @@ Transform:
   m_Father: {fileID: 4997469934463028}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4688366165399400
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1632436456219718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4997469934463028}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4997469934463028
 Transform:
   m_ObjectHideFlags: 1
@@ -96,11 +124,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1346801612196778}
   m_LocalRotation: {x: 0.00542806, y: -0.034070924, z: -0.004256554, w: 0.9993956}
-  m_LocalPosition: {x: 337.407, y: 174.711, z: 751.226}
+  m_LocalPosition: {x: 273.97, y: 172.44, z: 717.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4167174585598162}
   - {fileID: 4285093514227998}
+  - {fileID: 4688366165399400}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.026, y: 104.031006, z: -0.007}
@@ -353,3 +382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   range: 1
+  bloodEffect: {fileID: 1294348616409016, guid: f39989518206375429540e512f2dd406,
+    type: 2}
+  effectPos: {fileID: 4688366165399400}

@@ -22,7 +22,7 @@ namespace S019745F
 		bool isDead = false;
 
 		[SerializeField]
-		Arena1Spawner spawnerRef;
+		GameManager gameManager;
 
 		void Start()
 		{
@@ -37,7 +37,7 @@ namespace S019745F
 			player = PlayerManager.instance.player;
 			playerScript = player.GetComponent<Player>();
 
-			spawnerRef = FindObjectOfType<Arena1Spawner>();
+			gameManager = FindObjectOfType<GameManager>();
 		}
 
 		void Update()
@@ -57,7 +57,6 @@ namespace S019745F
 			if (isDead == false)
 			{
 				currentHealth = currentHealth -= damage;
-				controller.canMove = false;
 				animator.Play("standing react small from headshot");
 			}
 		}
@@ -75,7 +74,9 @@ namespace S019745F
 				thePlayerStats.AddExperience(expToGive);
 			}
 
-			spawnerRef.enemiesAlive--;
+			gameManager.enemiesRemaining--;
+
+			playerScript.kills++;
 
 			StartCoroutine(waitToDestroy());
 		}

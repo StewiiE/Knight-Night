@@ -14,6 +14,10 @@ namespace S019745F
 		GameObject archerImpactSound;
 		GameObject skeletonImpactSound;
 
+		public GameObject bloodEffect;
+
+		Transform maulEffectPos;
+
 		// Use this for initialization
 		void Start()
 		{
@@ -22,6 +26,8 @@ namespace S019745F
 			paladinImpactSound = transform.Find("MaulAudio/PaladinImpact").gameObject;
 			archerImpactSound = transform.Find("MaulAudio/ArcherImpact").gameObject;
 			skeletonImpactSound = transform.Find("MaulAudio/SkeletonImpact").gameObject;
+
+			maulEffectPos = transform.Find("MaulHitEffects").transform;
 		}
 
 		void OnTriggerEnter(Collider other)
@@ -35,19 +41,25 @@ namespace S019745F
 						IDamageable enemy = other.GetComponent<IDamageable>();
 						enemy.TakeDamage(damage);
 						paladinImpactSound.GetComponent<AudioSource>().Play();
+						Instantiate(bloodEffect, maulEffectPos.transform.position, maulEffectPos.transform.rotation);
 					}
 					else if(other.gameObject.tag == "Archer")
 					{
 						IDamageable enemy = other.GetComponent<IDamageable>();
 						enemy.TakeDamage(damage);
 						archerImpactSound.GetComponent<AudioSource>().Play();
+						Instantiate(bloodEffect, maulEffectPos.transform.position, maulEffectPos.transform.rotation);
 					}
 					else if(other.gameObject.tag == "Skeleton")
 					{
-						Debug.Log("Hit skeleton");
 						IDamageable enemy = other.GetComponent<IDamageable>();
 						enemy.TakeDamage(damage);
 						skeletonImpactSound.GetComponent<AudioSource>().Play();
+					}
+					else if(other.gameObject.tag == "Destructible")
+					{
+						IDamageable item = other.GetComponent<IDamageable>();
+						item.TakeDamage(damage);
 					}
 				}
 			}

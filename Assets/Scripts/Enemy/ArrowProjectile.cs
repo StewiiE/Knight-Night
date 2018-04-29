@@ -18,6 +18,9 @@ namespace S019745F
 
 		AudioSource hitSound;
 
+		public GameObject bloodEffect;
+		public Transform effectPos;
+
 		void Start()
 		{
 			rb = GetComponent<Rigidbody>();
@@ -49,6 +52,7 @@ namespace S019745F
 					{
 						hitSound.Play();
 						playerStats.currentHealth -= 10;
+						Instantiate(bloodEffect, effectPos.transform.position, Quaternion.identity);
 					}
 					else if (playerScript.isBlocking == true)
 					{

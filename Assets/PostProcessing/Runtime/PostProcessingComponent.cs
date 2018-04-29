@@ -8,7 +8,7 @@ namespace UnityEngine.PostProcessing
 
         public virtual DepthTextureMode GetCameraFlags()
         {
-            return context.camera.depthTextureMode;
+            return DepthTextureMode.None;
         }
 
         public abstract bool active { get; }
